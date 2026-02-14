@@ -48,7 +48,7 @@ namespace OODProject
             //Test.Name = "David";
             //Test.Description = "This is a test character";
 
-            //Serialise the character to JSON and save it to a file
+            //Serialise the character to JSON and save it to a file             Commented out to prevent overwriting the file every time the programs is run, this was how i made the json originally, now i just edit the json file directly to add characters until i make the character creation screen
             //string jsonString = JsonSerializer.Serialize(Test);
             //File.WriteAllText(fileName, jsonString);
 
@@ -62,6 +62,14 @@ namespace OODProject
             //characters.Add(Test)
             CharLbx.ItemsSource = characters;
 
+        }
+
+        //When the user selects a character from the listbox, display the description in the textbox
+        private void CharLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            Characters selectedChar = CharLbx.SelectedItem as Characters;
+
+            CharTbx.Text = selectedChar.Description;
         }
     }
 }

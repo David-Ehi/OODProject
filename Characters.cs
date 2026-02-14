@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace OODProject
 {
-    internal class Characters
+    public class Characters
     {
         public string Name { get; set; }
 
@@ -28,5 +28,6 @@ namespace OODProject
         {
             return Name;
         }
+
     }
 }
