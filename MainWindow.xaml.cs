@@ -26,14 +26,17 @@ namespace OODProject
         public MainWindow()
         {
             InitializeComponent();
+
         }
 
         private void SelectBtn_Click(object sender, RoutedEventArgs e)
         {
-            //Test Push
+            //Opens the character creation window when the select button is clicked
+            OpenCharWindow();
         }
 
         List<Characters> characters = new List<Characters>();
+
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
@@ -62,6 +65,7 @@ namespace OODProject
             //characters.Add(Test)
             CharLbx.ItemsSource = characters;
 
+
         }
 
         //When the user selects a character from the listbox, display the description in the textbox
@@ -71,5 +75,14 @@ namespace OODProject
 
             CharTbx.Text = selectedChar.Description;
         }
+
+        public void OpenCharWindow()
+        {
+            Characters MainChar = CharLbx.SelectedItem as Characters;
+            CharWindow charWindow = new CharWindow(MainChar);
+            charWindow.Owner = this;
+            charWindow.Show();
+        }
+
     }
 }
