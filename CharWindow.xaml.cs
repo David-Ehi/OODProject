@@ -23,18 +23,14 @@ namespace OODProject
         public CharWindow(Characters charactersFromMain)
         {
             InitializeComponent();
+            //Sets the character variable to the character passed from the main window
             character = charactersFromMain;
         }
 
-        private void CloseBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Close();
-
-            
-        }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+            //Loads the characters information into the labels and textboxes
             CharNameLabel.Content = character.Name;
             MaxHpLbl.Content = character.HP;
             HpTxBx.Text = character.HP.ToString();
@@ -44,6 +40,7 @@ namespace OODProject
 
         private void LoadAbilityScores()
         {
+            //Loads the characters ability scores into the listbox
             AbilitiesLbBx.Items.Add("STR: " + character.Strength);
             AbilitiesLbBx.Items.Add("DEX: " + character.Dexterity);
             AbilitiesLbBx.Items.Add("CON: " + character.Constitution);
@@ -54,6 +51,7 @@ namespace OODProject
 
         private void D20Btn_Click(object sender, RoutedEventArgs e)
         {
+            //Simulates rolling a d20 and shows the result in a message box
             Random rand = new Random();
             int roll = rand.Next(1, 21);
             MessageBox.Show($"You rolled a {roll}");

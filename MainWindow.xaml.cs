@@ -78,6 +78,7 @@ namespace OODProject
 
         public void OpenCharWindow()
         {
+            //opend the character window and passes the selected character to it
             Characters MainChar = CharLbx.SelectedItem as Characters;
             CharWindow charWindow = new CharWindow(MainChar);
             charWindow.Owner = this;
