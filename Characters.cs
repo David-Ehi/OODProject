@@ -22,6 +22,8 @@ namespace OODProject
         public int Intellegence { get; set; }
         public int Dexterity { get; set; }
         public int Charisma { get; set; }
+        public int HP { get; set; }
+        public int AC { get; set; }
         public Characters() { }
 
         public override string ToString()

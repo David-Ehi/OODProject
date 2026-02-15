@@ -35,7 +35,21 @@ namespace OODProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            test.Text = character.Description;
+            CharNameLabel.Content = character.Name;
+            MaxHpLbl.Content = character.HP;
+            HpTxBx.Text = character.HP.ToString();
+            AcLbl.Content = character.AC;
+            LoadAbilityScores();
+        }
+
+        private void LoadAbilityScores()
+        {
+            AbilitiesLbBx.Items.Add("STR: " + character.Strength);
+            AbilitiesLbBx.Items.Add("DEX: " + character.Dexterity);
+            AbilitiesLbBx.Items.Add("CON: " + character.Constitution);
+            AbilitiesLbBx.Items.Add("WIS: " + character.Wisdom);
+            AbilitiesLbBx.Items.Add("INT: " + character.Intellegence);
+            AbilitiesLbBx.Items.Add("CHA: " + character.Charisma);
         }
     }
 }
