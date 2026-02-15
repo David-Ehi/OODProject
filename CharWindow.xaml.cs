@@ -51,5 +51,12 @@ namespace OODProject
             AbilitiesLbBx.Items.Add("INT: " + character.Intellegence);
             AbilitiesLbBx.Items.Add("CHA: " + character.Charisma);
         }
+
+        private void D20Btn_Click(object sender, RoutedEventArgs e)
+        {
+            Random rand = new Random();
+            int roll = rand.Next(1, 21);
+            MessageBox.Show($"You rolled a {roll}");
+        }
     }
 }

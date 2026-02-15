@@ -26,6 +26,7 @@
         <TextBox HorizontalAlignment="Left" Name="HpTxBx" Margin="55,20,0,0" Grid.Row="1" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="39"/>
         <Label Content="AC" HorizontalAlignment="Left" Margin="21,58,0,0" Grid.Row="1" VerticalAlignment="Top"/>
         <Label Content="Label" Name="AcLbl" HorizontalAlignment="Left" Margin="55,58,0,0" Grid.Row="1" VerticalAlignment="Top"/>
+        <Button x:Name="D20Btn" Grid.Column="3" Grid.Row="1" Width="80" Height="60" VerticalAlignment="Top" Content="D20" Click="D20Btn_Click"/>
         <ListBox Grid.Column="2" Name="AbilitiesLbBx" HorizontalAlignment="Center" Height="131" Margin="0,24,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" d:ItemsSource="{d:SampleData ItemCount=5}"/>
     </Grid>
 </Window>
