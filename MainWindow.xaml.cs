@@ -49,6 +49,8 @@ namespace OODProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+            #region
             ////Test player for example
             //PlayerData db = new PlayerData();
 
@@ -86,6 +88,8 @@ namespace OODProject
             //    MessageBox.Show("Player and test character added to database!");
             //}
 
+            #endregion
+
             //^^^^^ New test data code that adds a player and character to the database. Uncomment to use. ^^^^^
 
             List<Characters> characters = new List<Characters>();
@@ -99,9 +103,6 @@ namespace OODProject
             }
 
             CharLbx.ItemsSource = characters;
-
-
-
 
         }
 
@@ -125,5 +126,14 @@ namespace OODProject
             charWindow.Show();
         }
 
+        private void CreateCharBtn_Click(object sender, RoutedEventArgs e)
+        {
+            CreateCharWindow createWindow = new CreateCharWindow();
+            createWindow.Show();
+
+            this.Close();
+
+            System.Windows.Application.Current.MainWindow = createWindow;
+        }
     }
 }

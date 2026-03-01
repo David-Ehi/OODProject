@@ -122,14 +122,14 @@
                            TextWrapping="Wrap"/>
 
                 <!-- Add Button -->
-                <Button Grid.Row="1"
+                <Button x:Name="CreateCharBtn" Grid.Row="1"
                         Width="60"
                         Height="60"
                         HorizontalAlignment="Right"
                         VerticalAlignment="Bottom"
                         Margin="20"
                         FontSize="28"
-                        Content="+">
+                        Content="+" Click="CreateCharBtn_Click">
 
                     <Button.Template>
                         <ControlTemplate TargetType="Button">
