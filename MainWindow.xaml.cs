@@ -21,6 +21,15 @@ namespace OODProject
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
+    /// 
+
+    // TO DO
+    // link api
+    // save to characters to database instead of json file
+
+
+
+
     public partial class MainWindow : Window
     {
         public MainWindow()
@@ -40,10 +49,30 @@ namespace OODProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Test Character for example
-            Characters Test = new Characters();
-            Test.Name = "Test";
-            Test.Description = "This is a test character";
+            //Test player for example
+            //PlaterData db = new PlaterData();
+
+            //using (db)
+            //{
+            //    Player TestPlayer = new Player();
+            //    TestPlayer.Name = "David Ehiagwina";
+            //    db.Players.Add(TestPlayer);
+            //    db.SaveChanges();
+
+            //    Characters Test = new Characters();
+            //    Test.Name = "Test";
+            //    Test.Description = "This is a test character";
+
+
+            //    db.Characters.Add(Test);
+
+            //}
+
+
+
+
+                //Test Character for example
+
             string fileName = "Characters.json";
 
 

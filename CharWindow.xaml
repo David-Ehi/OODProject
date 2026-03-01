@@ -5,28 +5,273 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OODProject"
         mc:Ignorable="d"
-        Title="CharWindow" Height="450" Width="800" Loaded="Window_Loaded">
-    <Grid Background="#2E2E2E">
+        Title="Character Sheet"
+        Height="550"
+        Width="1100"
+        Background="#2E2E2E"
+        Loaded="Window_Loaded">
+
+    <Window.Resources>
+
+        <!-- Red Theme Brushes -->
+        <SolidColorBrush x:Key="RedAccent" Color="#8B0000"/>
+        <SolidColorBrush x:Key="DarkPanel" Color="#3A3A3A"/>
+        <SolidColorBrush x:Key="LightText" Color="#DDDDDD"/>
+
+        <!-- Header Style -->
+        <Style x:Key="HeaderLabelStyle" TargetType="Label">
+            <Setter Property="Foreground" Value="#B22222"/>
+            <Setter Property="FontSize" Value="20"/>
+            <Setter Property="FontFamily" Value="Georgia"/>
+            <Setter Property="FontWeight" Value="Bold"/>
+            <Setter Property="HorizontalAlignment" Value="Center"/>
+        </Style>
+
+    </Window.Resources>
+
+    <Grid Margin="20">
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="10*"/>
-            <RowDefinition Height="70*"/>
+            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="*"/>
         </Grid.RowDefinitions>
+
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="24*"/>
-            <ColumnDefinition Width="24*"/>
-            <ColumnDefinition Width="24*"/>
-            <ColumnDefinition Width="24*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Content="" Background="DarkRed" Name="CharNameLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="0" Grid.Row="0" FontSize="18"/>
-        <Label Content="Spell" Background="DarkRed" Name="CharSpellLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="1" Grid.Row="0" FontSize="18"/>
-        <Label Content="Abilities" Background="DarkRed" Name="CharAbilityLabel" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="2" Grid.Row="0" FontSize="18"/>
-        <Label Content="Roll" Background="DarkRed"  HorizontalAlignment="Center" VerticalAlignment="Center" Grid.Column="3" Grid.Row="0" FontSize="18"/>
-        <Label Content="HP" HorizontalAlignment="Left" Margin="21,20,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="/10" Name="MaxHpLbl" HorizontalAlignment="Left" Margin="68,20,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <TextBox HorizontalAlignment="Left" Name="HpTxBx" Margin="55,20,0,0" Grid.Row="1" TextWrapping="Wrap" Text="10" VerticalAlignment="Top" Width="39"/>
-        <Label Content="AC" HorizontalAlignment="Left" Margin="21,58,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Label Content="Label" Name="AcLbl" HorizontalAlignment="Left" Margin="55,58,0,0" Grid.Row="1" VerticalAlignment="Top"/>
-        <Button x:Name="D20Btn" Grid.Column="3" Grid.Row="1" Width="80" Height="60" VerticalAlignment="Top" Content="D20" Click="D20Btn_Click"/>
-        <ListBox Grid.Column="2" Name="AbilitiesLbBx" HorizontalAlignment="Center" Height="131" Margin="0,24,0,0" Grid.Row="1" VerticalAlignment="Top" Width="140" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+
+        <!-- ================= HEADER ================= -->
+        <Border Grid.Row="0"
+                Grid.ColumnSpan="4"
+                BorderBrush="{StaticResource RedAccent}"
+                BorderThickness="2"
+                CornerRadius="8"
+                Padding="15"
+                Margin="0,0,0,20"
+                Background="#1E1E1E">
+
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Label Name="CharNameLabel"
+                       Content="Character Name"
+                       Grid.Column="0"
+                       Style="{StaticResource HeaderLabelStyle}"/>
+
+                <Label Name="CharSpellLabel"
+                       Content="Spells"
+                       Grid.Column="1"
+                       Style="{StaticResource HeaderLabelStyle}"/>
+
+                <Label Name="CharAbilityLabel"
+                       Content="Abilities"
+                       Grid.Column="2"
+                       Style="{StaticResource HeaderLabelStyle}"/>
+
+                <Label Content="Roll"
+                       Grid.Column="3"
+                       Style="{StaticResource HeaderLabelStyle}"/>
+            </Grid>
+        </Border>
+
+        <!-- ================= STATS CARD ================= -->
+        <Border Grid.Row="1"
+                Grid.Column="0"
+                Background="{StaticResource DarkPanel}"
+                CornerRadius="10"
+                Padding="20"
+                Margin="10"
+                BorderBrush="{StaticResource RedAccent}"
+                BorderThickness="2">
+
+            <StackPanel>
+
+                <TextBlock Text="Vitality"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           FontFamily="Georgia"
+                           Foreground="#B22222"
+                           Margin="0,0,0,15"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="HP:"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource LightText}"/>
+
+                    <TextBox Name="HpTxBx"
+                             Width="50"
+                             Margin="5,0"
+                             Text="10"
+                             Background="#2E2E2E"
+                             Foreground="{StaticResource LightText}"
+                             BorderBrush="{StaticResource RedAccent}"
+                             Padding="5"/>
+
+                    <Label Name="MaxHpLbl"
+                           Content="/10"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource LightText}"/>
+                </StackPanel>
+
+                <Separator Margin="0,20" Background="#555"/>
+
+                <StackPanel Orientation="Horizontal">
+                    <Label Content="Armor Class:"
+                           FontWeight="Bold"
+                           Foreground="{StaticResource LightText}"/>
+
+                    <Label Name="AcLbl"
+                           Content="15"
+                           FontWeight="Bold"
+                           Foreground="#B22222"
+                           Margin="10,0,0,0"/>
+                </StackPanel>
+
+            </StackPanel>
+        </Border>
+
+        <!-- ================= ABILITIES CARD ================= -->
+        <Border Grid.Row="1"
+                Grid.Column="2"
+                Background="{StaticResource DarkPanel}"
+                CornerRadius="10"
+                Padding="15"
+                Margin="10"
+                BorderBrush="{StaticResource RedAccent}"
+                BorderThickness="2">
+
+            <StackPanel>
+                <TextBlock Text="Abilities"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           FontFamily="Georgia"
+                           Foreground="#B22222"
+                           Margin="0,0,0,10"/>
+
+                <ListBox Name="AbilitiesLbBx"
+                         Height="200"
+                         Background="#2E2E2E"
+                         Foreground="{StaticResource LightText}"
+                         BorderBrush="{StaticResource RedAccent}"
+                         BorderThickness="1"
+                         d:ItemsSource="{d:SampleData ItemCount=5}"/>
+            </StackPanel>
+        </Border>
+
+        <!-- ================= DICE CARD ================= -->
+        <Border Grid.Row="1"
+                Grid.Column="3"
+                Background="#1E1E1E"
+                CornerRadius="10"
+                Padding="20"
+                Margin="10"
+                BorderBrush="{StaticResource RedAccent}"
+                BorderThickness="2"
+                HorizontalAlignment="Stretch"
+                VerticalAlignment="Top">
+
+            <StackPanel HorizontalAlignment="Center">
+
+                <TextBlock Text="Roll the Dice"
+                           Foreground="#B22222"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           FontFamily="Georgia"
+                           Margin="0,0,0,20"
+                           HorizontalAlignment="Center"/>
+
+                <UniformGrid Rows="3" Columns="2" HorizontalAlignment="Center">
+
+                    <Button x:Name="D20Btn"
+                            Content="D20"
+                            Margin="8"
+                            Width="80"
+                            Height="80"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#B22222"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            BorderThickness="2"
+                            Click="D20Btn_Click"/>
+
+                    <Button x:Name="D12Btn"
+                            Content="D12"
+                            Margin="8"
+                            Width="80"
+                            Height="80"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#B22222"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            BorderThickness="2"
+                            Click="D12Btn_Click"/>
+
+                    <Button x:Name="D10Btn"
+                            Content="D10"
+                            Margin="8"
+                            Width="80"
+                            Height="80"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#B22222"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            BorderThickness="2"
+                            Click="D10Btn_Click"/>
+
+                    <Button x:Name="D8Btn"
+                            Content="D8"
+                            Margin="8"
+                            Width="80"
+                            Height="80"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#B22222"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            BorderThickness="2"
+                            Click="D8Btn_Click"/>
+
+                    <Button x:Name="D6Btn"
+                            Content="D6"
+                            Margin="8"
+                            Width="80"
+                            Height="80"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#B22222"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            BorderThickness="2"
+                            Click="D6Btn_Click"/>
+
+                    <Button x:Name="D4Btn"
+                            Content="D4"
+                            Margin="8"
+                            Width="80"
+                            Height="80"
+                            FontSize="18"
+                            FontWeight="Bold"
+                            Foreground="#B22222"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            BorderThickness="2"
+                            Click="D4Btn_Click"/>
+
+                </UniformGrid>
+
+            </StackPanel>
+        </Border>
+
     </Grid>
 </Window>
