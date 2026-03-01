@@ -49,50 +49,58 @@ namespace OODProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            //Test player for example
-            //PlaterData db = new PlaterData();
+            ////Test player for example
+            //PlayerData db = new PlayerData();
 
             //using (db)
             //{
+            //    // Create a test player
             //    Player TestPlayer = new Player();
             //    TestPlayer.Name = "David Ehiagwina";
+
+            //    // Create a test character with full stats
+            //    Characters TestCharacter = new Characters();
+            //    TestCharacter.Name = "Arthas the Brave";
+            //    TestCharacter.Description = "A courageous knight from the kingdom of Lordaeron. Known for his strength and honor.";
+            //    TestCharacter.Class = "Paladin";
+            //    TestCharacter.Level = 5;
+            //    TestCharacter.Strength = 18;
+            //    TestCharacter.Constitution = 16;
+            //    TestCharacter.Wisdom = 14;
+            //    TestCharacter.Intelligence = 12;
+            //    TestCharacter.Dexterity = 13;
+            //    TestCharacter.Charisma = 15;
+            //    TestCharacter.HP = 45;
+            //    TestCharacter.AC = 17;
+
+            //    // Link character to the player
+            //    TestCharacter.Player = TestPlayer;
+            //    TestPlayer.Characters.Add(TestCharacter);
+
+            //    // Add to database
             //    db.Players.Add(TestPlayer);
+            //    db.Characters.Add(TestCharacter);
+
             //    db.SaveChanges();
 
-            //    Characters Test = new Characters();
-            //    Test.Name = "Test";
-            //    Test.Description = "This is a test character";
-
-
-            //    db.Characters.Add(Test);
-
+            //    MessageBox.Show("Player and test character added to database!");
             //}
 
+            //^^^^^ New test data code that adds a player and character to the database. Uncomment to use. ^^^^^
 
+            List<Characters> characters = new List<Characters>();
 
-
-                //Test Character for example
-
-            string fileName = "Characters.json";
-
-
-            //Characters Test2 = new Characters();
-            //Test.Name = "David";
-            //Test.Description = "This is a test character";
-
-            //Serialise the character to JSON and save it to a file             Commented out to prevent overwriting the file every time the programs is run, this was how i made the json originally, now i just edit the json file directly to add characters until i make the character creation screen
-            //string jsonString = JsonSerializer.Serialize(Test);
-            //File.WriteAllText(fileName, jsonString);
-
-            string textFromFile = File.ReadAllText(fileName);
-            List<Characters> deserializedCharacters = JsonSerializer.Deserialize<List<Characters>>(textFromFile);
-            foreach (Characters character in deserializedCharacters)
+            using (var db = new PlayerData())
             {
-                characters.Add(character);
+
+                characters = db.Characters
+                               .Include("Player") 
+                               .ToList();
             }
 
-            //characters.Add(Test)
             CharLbx.ItemsSource = characters;
+
+
 
 
         }
@@ -102,7 +110,10 @@ namespace OODProject
         {
             Characters selectedChar = CharLbx.SelectedItem as Characters;
 
-            CharTbx.Text = selectedChar.Description;
+            if (selectedChar != null)
+            {
+                CharTbx.Text = selectedChar.Description;
+            }
         }
 
         public void OpenCharWindow()

@@ -45,7 +45,7 @@ namespace OODProject
             AbilitiesLbBx.Items.Add("DEX: " + character.Dexterity);
             AbilitiesLbBx.Items.Add("CON: " + character.Constitution);
             AbilitiesLbBx.Items.Add("WIS: " + character.Wisdom);
-            AbilitiesLbBx.Items.Add("INT: " + character.Intellegence);
+            AbilitiesLbBx.Items.Add("INT: " + character.Intelligence);
             AbilitiesLbBx.Items.Add("CHA: " + character.Charisma);
         }
 
@@ -88,7 +88,7 @@ namespace OODProject
         private void D4Btn_Click(object sender, RoutedEventArgs e)
         {
             Random rand = new Random();
-            int roll = rand.Next(1, 5);
+            int roll = rand.Next(1, 4);
             MessageBox.Show($"You rolled a {roll}");
         }
     }
