@@ -74,6 +74,15 @@ namespace OODProject
             {
                 ProfDesc.Text = Classinfo.proficiency_choices[0].desc;
             }
+
+            AbilityScoreProfTxBlk.Text = null;
+            if (Classinfo.proficiencies != null)
+            {
+                for (int i = 0; i < Classinfo.proficiencies.Count; i++)
+                {
+                    AbilityScoreProfTxBlk.Text += Classinfo.proficiencies[i].name.ToString() + "\n";
+                }
+            }
         }
 
         private void ClassLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
