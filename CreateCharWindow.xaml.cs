@@ -21,6 +21,9 @@ namespace OODProject
     /// </summary>
     public partial class CreateCharWindow : Window
     {
+
+
+
         public CreateCharWindow()
         {
             InitializeComponent();
@@ -57,14 +60,20 @@ namespace OODProject
 
             ClassinfoRoot Classinfo = JsonConvert.DeserializeObject<ClassinfoRoot>(body);
 
+            UpdateCreationPage(Classinfo);
+
+        }
+
+        public void UpdateCreationPage(ClassinfoRoot Classinfo)
+        {
+
             SubclassLbx.ItemsSource = Classinfo.subclasses;
             HitDieTblk.Text = Classinfo.hit_die.ToString();
             if (Classinfo.proficiency_choices != null &&
-    Classinfo.proficiency_choices.Count > 0)
+            Classinfo.proficiency_choices.Count > 0)
             {
                 ProfDesc.Text = Classinfo.proficiency_choices[0].desc;
             }
-
         }
 
         private void ClassLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
