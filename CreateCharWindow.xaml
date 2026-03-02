@@ -5,8 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:OODProject"
         mc:Ignorable="d"
-        Title="CreateCharWindow" Height="450" Width="800">
+        Title="CreateCharWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        
+        <ListBox x:Name="ClassLbx"  HorizontalAlignment="Left" Height="234" Margin="169,118,0,0" VerticalAlignment="Top" Width="289" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ClassLbx_SelectionChanged"/>
+        <ListBox x:Name="SubclassLbx" HorizontalAlignment="Left" Height="234" Margin="529,118,0,0" VerticalAlignment="Top" Width="210" d:ItemsSource="{d:SampleData ItemCount=5}"/>
     </Grid>
 </Window>

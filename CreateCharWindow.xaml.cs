@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -22,6 +24,47 @@ namespace OODProject
         public CreateCharWindow()
         {
             InitializeComponent();
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
+        {
+            Api();
+        }
+
+        public async Task Api()
+        {
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, "https://www.dnd5eapi.co/api/2014/classes/");
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadAsStringAsync();
+
+            Root AllClasses = JsonConvert.DeserializeObject<Root>(body);
+            
+            ClassLbx.ItemsSource = AllClasses.results;
+        }
+
+        public async Task SubclassApi()
+        {
+            string dndclass = ClassLbx.SelectedItem.ToString().ToLower();
+            
+            
+            var client = new HttpClient();
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://www.dnd5eapi.co/api/2014/classes/{dndclass}");
+            var response = await client.SendAsync(request);
+            response.EnsureSuccessStatusCode();
+            var body = await response.Content.ReadAsStringAsync();
+
+            ClassinfoRoot Classinfo = JsonConvert.DeserializeObject<ClassinfoRoot>(body);
+
+            SubclassLbx.ItemsSource = Classinfo.subclasses;
+
+        }
+
+        private void ClassLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            SubclassLbx.ItemsSource = null;
+            SubclassApi();
         }
     }
 }
