@@ -7,7 +7,9 @@
         mc:Ignorable="d"
         Title="CreateCharWindow" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <ListBox x:Name="ClassLbx"  HorizontalAlignment="Left" Height="234" Margin="169,118,0,0" VerticalAlignment="Top" Width="289" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ClassLbx_SelectionChanged"/>
-        <ListBox x:Name="SubclassLbx" HorizontalAlignment="Left" Height="234" Margin="529,118,0,0" VerticalAlignment="Top" Width="210" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <ListBox x:Name="ClassLbx"  HorizontalAlignment="Left" Height="181" Margin="31,54,0,0" VerticalAlignment="Top" Width="108" d:ItemsSource="{d:SampleData ItemCount=5}" SelectionChanged="ClassLbx_SelectionChanged"/>
+        <ListBox x:Name="SubclassLbx" HorizontalAlignment="Left" Height="181" Margin="144,54,0,0" VerticalAlignment="Top" Width="110" d:ItemsSource="{d:SampleData ItemCount=5}"/>
+        <TextBlock x:Name="HitDieTblk" HorizontalAlignment="Left" Height="56" Margin="31,255,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="108"/>
+        <TextBlock x:Name="ProfDesc" HorizontalAlignment="Left" Height="75" Margin="307,54,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="215"/>
     </Grid>
 </Window>

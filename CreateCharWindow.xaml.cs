@@ -44,7 +44,7 @@ namespace OODProject
             ClassLbx.ItemsSource = AllClasses.results;
         }
 
-        public async Task SubclassApi()
+        public async Task ClassInfoApi()
         {
             string dndclass = ClassLbx.SelectedItem.ToString().ToLower();
             
@@ -58,13 +58,19 @@ namespace OODProject
             ClassinfoRoot Classinfo = JsonConvert.DeserializeObject<ClassinfoRoot>(body);
 
             SubclassLbx.ItemsSource = Classinfo.subclasses;
+            HitDieTblk.Text = Classinfo.hit_die.ToString();
+            if (Classinfo.proficiency_choices != null &&
+    Classinfo.proficiency_choices.Count > 0)
+            {
+                ProfDesc.Text = Classinfo.proficiency_choices[0].desc;
+            }
 
         }
 
         private void ClassLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             SubclassLbx.ItemsSource = null;
-            SubclassApi();
+            ClassInfoApi();
         }
     }
 }
