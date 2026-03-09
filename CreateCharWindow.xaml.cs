@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
 using System.Text;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -29,7 +30,7 @@ namespace OODProject
             InitializeComponent();
         }
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        public void Window_Loaded(object sender, RoutedEventArgs e)
         {
             Api();
         }
@@ -89,6 +90,33 @@ namespace OODProject
         {
             SubclassLbx.ItemsSource = null;
             ClassInfoApi();
+        }
+
+        private void AddtoDBBtn_Click(object sender, RoutedEventArgs e)
+        {
+            PlayerData db = new PlayerData();
+
+
+            string playername = PlayerNameTbx.Text;
+            string name = NameTbx.Text;
+            string dndclass = ClassLbx.SelectedItem as string;
+
+            Player player = new Player();
+            player.Name = name;
+
+
+
+            Characters character = new Characters();
+            character.Name = name;
+            character.Class = dndclass;
+
+
+            character.Player = player;
+            player.Characters.Add(character);
+            
+            db.Characters.Add(character);
+            db.Players.Add(player);
+            db.SaveChanges();
         }
     }
 }

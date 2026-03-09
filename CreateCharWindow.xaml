@@ -12,5 +12,8 @@
         <TextBlock x:Name="HitDieTblk" HorizontalAlignment="Left" Height="56" Margin="31,255,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="108"/>
         <TextBlock x:Name="ProfDesc" HorizontalAlignment="Left" Height="75" Margin="307,54,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="215"/>
         <TextBlock x:Name="AbilityScoreProfTxBlk" HorizontalAlignment="Left" Height="91" Margin="307,144,0,0" TextWrapping="Wrap" Text="TextBlock" VerticalAlignment="Top" Width="135"/>
+        <Button x:Name="AddtoDBBtn" Content="Button" HorizontalAlignment="Left" Margin="655,323,0,0" VerticalAlignment="Top" Click="AddtoDBBtn_Click"/>
+        <TextBox x:Name="NameTbx" HorizontalAlignment="Left" Margin="75,370,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
+        <TextBox x:Name="PlayerNameTbx" HorizontalAlignment="Left" Margin="320,395,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="120"/>
     </Grid>
 </Window>

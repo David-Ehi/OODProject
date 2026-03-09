@@ -50,7 +50,7 @@ namespace OODProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            #region
+            #region Generate Test Data
             ////Test player for example
             //PlayerData db = new PlayerData();
 
@@ -88,7 +88,7 @@ namespace OODProject
             //    MessageBox.Show("Player and test character added to database!");
             //}
 
-            #endregion
+            #endregion 
 
             //^^^^^ New test data code that adds a player and character to the database. Uncomment to use. ^^^^^
 
@@ -126,6 +126,8 @@ namespace OODProject
             charWindow.Show();
         }
 
+
+
         private void CreateCharBtn_Click(object sender, RoutedEventArgs e)
         {
             CreateCharWindow createWindow = new CreateCharWindow();
@@ -134,6 +136,13 @@ namespace OODProject
             this.Close();
 
             System.Windows.Application.Current.MainWindow = createWindow;
+            //CharacterCreationPage page = new CharacterCreationPage();
+
+            //NavigationService ns = this.NavigationService;
+
+            //ns.Navigate(page);
+
+
         }
     }
 }
