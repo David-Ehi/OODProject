@@ -50,11 +50,7 @@
                          Background="#3A3A3A"
                          Foreground="#DDDDDD"/>
 
-                <Button Content="Roll HP"
-                        Margin="10,0"
-                        Click="RollHpBtn_Click"
-                        Background="#8B0000"
-                        Foreground="White"/>
+
             </StackPanel>
             <ListBox x:Name="ClassFeaturelbx" Height="123" Width="181" d:ItemsSource="{d:SampleData ItemCount=5}"/>
             <ComboBox x:Name="LvlCbx" Height="32" Width="68" SelectionChanged="LvlCbx_SelectionChanged">
@@ -114,11 +110,11 @@
 
             </UniformGrid>
 
-            <Button Content="Roll Ability Scores"
-                    Margin="0,15,0,0"
-                    Click="RollStatsBtn_Click"
-                    Background="#8B0000"
-                    Foreground="White"/>
+
+            <TextBlock x:Name="Profbonistxbk" Height="52" TextWrapping="Wrap" Text="TextBlock" Width="85"/>
+            <TextBox x:Name="playernametbx" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <TextBox x:Name="CharacterNametbx" TextWrapping="Wrap" Text="TextBox" Width="120"/>
+            <Button x:Name="SaveCharacter" Content="Button" Click="SaveCharacter_Click"/>
 
         </StackPanel>
 
@@ -150,6 +146,21 @@
                 <ComboBoxItem Content="Two Weapon Fighting"/>
 
             </ComboBox>
+
+            <GroupBox Header="Skills: Choose two">
+                <StackPanel>
+
+                    <CheckBox Content="Acrobatics" x:Name="SkillAcrobatics"/>
+                    <CheckBox Content="Animal Handling" x:Name="SkillAnimalHandling"/>
+                    <CheckBox Content="Athletics" x:Name="SkillAthletics"/>
+                    <CheckBox Content="History" x:Name="SkillHistory"/>
+                    <CheckBox Content="Insight" x:Name="SkillInsight"/>
+                    <CheckBox Content="Intimidation" x:Name="SkillIntimidation"/>
+                    <CheckBox Content="Perception" x:Name="SkillPerception"/>
+                    <CheckBox Content="Survival" x:Name="SkillSurvival"/>
+
+                </StackPanel>
+            </GroupBox>
 
         </StackPanel>
 

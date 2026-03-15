@@ -123,25 +123,127 @@ namespace OODProject
         private async void LvlCbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
 
-            ClassFeaturelbx.ItemsSource = null; // Clear previous features
-            int selectedLevel = LvlCbx.SelectedIndex + 1; // Assuming levels start at 1 and ComboBox is zero-indexed
+            if (LvlCbx.SelectedItem == null) return; // Guard clause to prevent errors when no level is selected
 
-            List<Feature> totalfeature = new List<Feature>();
+            await LoadClassLevels(); // Ensure levels are loaded and cached
 
-            for (int i = 0; i < selectedLevel; i++)
-                #region getfeaturesforlevel
-                if (LvlCbx.SelectedItem is ComboBoxItem item) // Checks if the selected item is a ComboBoxItem, which it should be in this case since we're populating it with ComboBoxItems in XAML
-                {
+            int selectedLevel = LvlCbx.SelectedIndex + 1;
 
-                    var features = await GetFeaturesForLevel(selectedClass, i + 1);
+            var totalFeatures = _cachedLevels //we use the cached levels to get the features for all levels up to the selected level, this way we dont have to make multiple api calls when the user changes the level selection
+                .Where(l => l.level <= selectedLevel)
+                .SelectMany(l => l.features)
+                .ToList();
 
-                    totalfeature.AddRange(features);
+            ClassFeaturelbx.ItemsSource = totalFeatures;
 
-                }
-            ClassFeaturelbx.ItemsSource = totalfeature;
+
+
+            #region Proficiency Bonus
+            Profbonistxbk.Text = $"Proficiency Bonus: {DetermineProficiencyBonus(selectedLevel)}";
+            #endregion
+
 
         }
 
+        #region caching class levels
+        private List<ClassLevel> _cachedLevels; //to make thing more efficient, we cache the levels for the selected class so we dont have to make multiple api calls when the user changes the level selection
+        private async Task LoadClassLevels()
+        {
+            if (_cachedLevels != null) return;
+
+            var client = new HttpClient();
+
+            string body = await client.GetStringAsync(
+                $"https://www.dnd5eapi.co/api/2014/classes/{selectedClass}/levels");
+
+            _cachedLevels =
+                JsonConvert.DeserializeObject<List<ClassLevel>>(body);
+        }
+        #endregion
+
+        public int DetermineProficiencyBonus(int level)
+        {
+            if (level >= 1 && level <= 4)
+                return 2;
+            else if (level >= 5 && level <= 8)
+                return 3;
+            else if (level >= 9 && level <= 12)
+                return 4;
+            else if (level >= 13 && level <= 16)
+                return 5;
+            else if (level >= 17 && level <= 20)
+                return 6;
+            else
+                throw new ArgumentException("Level must be between 1 and 20");
+
+        }
+
+        public List<string> GetSelectedSkills()
+        {
+            var selectedSkills = new List<string>();
+            if (SkillAthletics.IsChecked == true) selectedSkills.Add("Athletics");
+            if (SkillAcrobatics.IsChecked == true) selectedSkills.Add("Acrobatics");
+            if (SkillAnimalHandling.IsChecked == true) selectedSkills.Add("Sleight of Hand");
+            if (SkillInsight.IsChecked == true) selectedSkills.Add("Stealth");
+            if (SkillIntimidation.IsChecked == true) selectedSkills.Add("Arcana");
+            if (SkillHistory.IsChecked == true) selectedSkills.Add("History");
+            if (SkillPerception.IsChecked == true) selectedSkills.Add("Investigation");
+            if (SkillSurvival.IsChecked == true) selectedSkills.Add("Nature");
+            return selectedSkills;
+        }
+
+        private async void SaveCharacter_Click(object sender, RoutedEventArgs e)
+        {
+            {
+
+
+                PlayerData db = new PlayerData();
+
+                var selectedSkills = GetSelectedSkills();
+                int level = LvlCbx.SelectedIndex + 1;
+                string charactername = CharacterNametbx.Text;
+                string playername = playernametbx.Text;
+
+                int Str = int.Parse(StrTbx.Text);
+                int Con = int.Parse(ConTbx.Text);
+                int Dex = int.Parse(DexTbx.Text);
+                int Cha = int.Parse(ChaTbx.Text);
+                int Wis = int.Parse(WisTbx.Text);
+                int Int = int.Parse(IntTbx.Text);
+
+                int Profbonus = DetermineProficiencyBonus(level);
+
+
+                Player player = new Player();
+                player.Name = playername;
+
+                Characters character = new Characters();
+                character.Name = charactername;
+                character.Level = level;
+                character.Strength = Str;
+                character.Constitution = Con;
+                character.Dexterity = Dex;
+                character.Wisdom = Wis;
+                character.Intelligence = Int;
+                character.Charisma = Cha;
+
+                character.ProficencyBonus = Profbonus;
+
+
+                character.Player = player;
+                player.Characters.Add(character);
+
+                db.Characters.Add(character);
+                db.Players.Add(player);
+                db.SaveChanges();
+
+
+                MessageBox.Show("Character saved successfully");
+
+
+
+            }
+        }
     }
     
 }

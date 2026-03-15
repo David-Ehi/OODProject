@@ -133,9 +133,7 @@ namespace OODProject
             CreateCharWindow createWindow = new CreateCharWindow();
             createWindow.Show();
 
-            this.Close();
 
-            System.Windows.Application.Current.MainWindow = createWindow;
             //CharacterCreationPage page = new CharacterCreationPage();
 
             //NavigationService ns = this.NavigationService;

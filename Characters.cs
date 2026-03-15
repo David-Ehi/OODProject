@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Data.Entity;
 
 namespace OODProject
@@ -13,14 +14,36 @@ namespace OODProject
         public string Description { get; set; }
         public string Class { get; set; }
         public int Level { get; set; }
+        public int ProficencyBonus { get; set; }
+
         public int Strength { get; set; }
         public int Constitution { get; set; }
         public int Wisdom { get; set; }
-        public int Intelligence { get; set; } 
+        public int Intelligence { get; set; }
         public int Dexterity { get; set; }
         public int Charisma { get; set; }
+
         public int HP { get; set; }
         public int AC { get; set; }
+
+        
+        public int SpellSlotsLevel1 { get; set; }
+        public int SpellSlotsLevel2 { get; set; }
+        public int SpellSlotsLevel3 { get; set; }
+        public int SpellSlotsLevel4 { get; set; }
+        public int SpellSlotsLevel5 { get; set; }
+        public int SpellSlotsLevel6 { get; set; }
+        public int SpellSlotsLevel7 { get; set; }
+        public int SpellSlotsLevel8 { get; set; }
+        public int SpellSlotsLevel9 { get; set; }
+
+        
+        public virtual ICollection<Spell> Spells { get; set; }
+
+        public Characters()
+        {
+            Spells = new List<Spell>();
+        }
 
         public virtual Player Player { get; set; }
 
@@ -30,10 +53,31 @@ namespace OODProject
         }
     }
 
+    
+    public class Spell
+    {
+        [Key]
+        public int SpellId { get; set; }
+
+        public string Name { get; set; }
+
+        public int Level { get; set; }
+
+        public string Description { get; set; }
+
+        //link spell to characters
+        public virtual ICollection<Characters> Characters { get; set; }
+
+        public Spell()
+        {
+            Characters = new List<Characters>();
+        }
+    }
+
     public class Player
     {
         [Key]
-        public int PlayerId { get; set; } 
+        public int PlayerId { get; set; }
 
         public string Name { get; set; }
 
@@ -51,5 +95,6 @@ namespace OODProject
 
         public DbSet<Player> Players { get; set; }
         public DbSet<Characters> Characters { get; set; }
+        public DbSet<Spell> Spells { get; set; }
     }
 }

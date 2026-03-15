@@ -109,6 +109,7 @@ namespace OODProject
         public DateTime updated_at { get; set; }
 
         private List<String> class_Features { get; set; }
+        private List<ClassLevel> _cachedLevels;
     }
 
     public class SavingThrow
