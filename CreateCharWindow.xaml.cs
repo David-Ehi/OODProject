@@ -30,9 +30,9 @@ namespace OODProject
             InitializeComponent();
         }
 
-        public void Window_Loaded(object sender, RoutedEventArgs e)
+        public async void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            Api();
+            await Api();
         }
 
         public async Task Api()
@@ -68,55 +68,67 @@ namespace OODProject
         public void UpdateCreationPage(ClassinfoRoot Classinfo)
         {
 
-            SubclassLbx.ItemsSource = Classinfo.subclasses;
-            HitDieTblk.Text = Classinfo.hit_die.ToString();
-            if (Classinfo.proficiency_choices != null &&
-            Classinfo.proficiency_choices.Count > 0)
-            {
-                ProfDesc.Text = Classinfo.proficiency_choices[0].desc;
-            }
+            //SubclassLbx.ItemsSource = Classinfo.subclasses;
+            //HitDieTblk.Text = Classinfo.hit_die.ToString();
+            //if (Classinfo.proficiency_choices != null &&
+            //Classinfo.proficiency_choices.Count > 0)
+            //{
+            //    ProfDesc.Text = Classinfo.proficiency_choices[0].desc;
+            //}
 
-            AbilityScoreProfTxBlk.Text = null;
-            if (Classinfo.proficiencies != null)
-            {
-                for (int i = 0; i < Classinfo.proficiencies.Count; i++)
-                {
-                    AbilityScoreProfTxBlk.Text += Classinfo.proficiencies[i].name.ToString() + "\n";
-                }
-            }
+            //AbilityScoreProfTxBlk.Text = null;
+            //if (Classinfo.proficiencies != null)
+            //{
+            //    for (int i = 0; i < Classinfo.proficiencies.Count; i++)
+            //    {
+            //        AbilityScoreProfTxBlk.Text += Classinfo.proficiencies[i].name.ToString() + "\n";
+            //    }
+            //}
         }
 
         private void ClassLbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            SubclassLbx.ItemsSource = null;
-            ClassInfoApi();
+            //SubclassLbx.ItemsSource = null;
+            //ClassInfoApi();
+
+            if (ClassLbx.SelectedItem == null) return;
+            {
+                string selectedClass = ClassLbx.SelectedItem.ToString(); //not sure if this is right, i couldnt get it work otherwise
+
+                switch (selectedClass)
+                {
+                    case "Fighter":
+                        ClassFrame.Navigate(new FighterPage());
+                        break;
+                }
+            }
         }
 
         private void AddtoDBBtn_Click(object sender, RoutedEventArgs e)
         {
-            PlayerData db = new PlayerData();
+            //PlayerData db = new PlayerData();
 
 
-            string playername = PlayerNameTbx.Text;
-            string name = NameTbx.Text;
-            string dndclass = ClassLbx.SelectedItem as string;
+            //string playername = PlayerNameTbx.Text;
+            //string name = NameTbx.Text;
+            //string dndclass = ClassLbx.SelectedItem as string;
 
-            Player player = new Player();
-            player.Name = name;
-
-
-
-            Characters character = new Characters();
-            character.Name = name;
-            character.Class = dndclass;
+            //Player player = new Player();
+            //player.Name = name;
 
 
-            character.Player = player;
-            player.Characters.Add(character);
+
+            //Characters character = new Characters();
+            //character.Name = name;
+            //character.Class = dndclass;
+
+
+            //character.Player = player;
+            //player.Characters.Add(character);
             
-            db.Characters.Add(character);
-            db.Players.Add(player);
-            db.SaveChanges();
+            //db.Characters.Add(character);
+            //db.Players.Add(player);
+            //db.SaveChanges();
         }
     }
 }

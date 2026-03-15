@@ -107,6 +107,8 @@ namespace OODProject
         public List<Subclass> subclasses { get; set; }
         public string url { get; set; }
         public DateTime updated_at { get; set; }
+
+        private List<String> class_Features { get; set; }
     }
 
     public class SavingThrow
