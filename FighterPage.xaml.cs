@@ -136,7 +136,7 @@ namespace OODProject
 
             ClassFeaturelbx.ItemsSource = totalFeatures;
 
-
+        
 
             #region Proficiency Bonus
             Profbonistxbk.Text = $"Proficiency Bonus: {DetermineProficiencyBonus(selectedLevel)}";
@@ -220,6 +220,8 @@ namespace OODProject
                 Characters character = new Characters();
                 character.Name = charactername;
                 character.Level = level;
+                character.Class = selectedClass;
+                character.HP = int.Parse(HpTbx.Text);
                 character.Strength = Str;
                 character.Constitution = Con;
                 character.Dexterity = Dex;

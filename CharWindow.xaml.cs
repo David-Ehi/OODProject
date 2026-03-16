@@ -35,6 +35,7 @@ namespace OODProject
             MaxHpLbl.Content = character.HP;
             HpTxBx.Text = character.HP.ToString();
             AcLbl.Content = character.AC;
+            ClassTbx.Text = character.Class;
             LoadAbilityScores();
         }
 
@@ -90,6 +91,20 @@ namespace OODProject
             Random rand = new Random();
             int roll = rand.Next(1, 4);
             MessageBox.Show($"You rolled a {roll}");
+        }
+
+        private void GetClassFeaturesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            OpenCharFeatureWindow();
+        }
+
+        public void OpenCharFeatureWindow()
+        {
+            //opend the character window and passes the selected character to it
+            Characters MainChar = character as Characters;
+            CharFeatures FeatureWindow = new CharFeatures(MainChar);
+            FeatureWindow.Owner = this;
+            FeatureWindow.Show();
         }
     }
 }

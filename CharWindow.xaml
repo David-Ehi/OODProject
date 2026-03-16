@@ -134,6 +134,12 @@
                            Foreground="#B22222"
                            Margin="10,0,0,0"/>
                 </StackPanel>
+                <StackPanel>
+                    <Button Background="#B22222" BorderBrush="#B22222" Content="Get Class Features" Width="150" Margin="0,20,0,0" Click="GetClassFeaturesBtn_Click"/> 
+                </StackPanel>
+                <StackPanel>
+                    <TextBlock Name="ClassTbx" Width="150" Height="100" Margin="0, 20, 0, 0"></TextBlock>
+                </StackPanel>
 
             </StackPanel>
         </Border>
