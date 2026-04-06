@@ -90,7 +90,7 @@ namespace OODProject
             Featurelbx.ItemsSource = totalFeatures;
         }
 
-        private async Task Featurelbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private async void Featurelbx_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             Feature selectedfeature = Featurelbx.SelectedItem as Feature;
             string featurename = Featurelbx.SelectedItem.ToString();
@@ -104,7 +104,14 @@ namespace OODProject
             var client = new HttpClient();
 
             string body = await client.GetStringAsync(
-                $"https://www.dnd5eapi.co/api/2014/classes/{className}/levels");
+                $"https://www.dnd5eapi.co/api/2014/features/{index}");
+            
+            Features featureDesc = JsonConvert.DeserializeObject<Features>(body);
+
+            FeatureDescTbx.Text = featureDesc.desc;
+
+
         }
+
     }
 }

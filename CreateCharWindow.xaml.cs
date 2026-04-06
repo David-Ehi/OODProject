@@ -92,14 +92,11 @@ namespace OODProject
             //ClassInfoApi();
             if (ClassLbx.SelectedItem == null) return;
             {
-                string selectedClass = ClassLbx.SelectedItem.ToString(); //not sure if this is right, i couldnt get it work otherwise
+                string selectedClass = ClassLbx.SelectedItem.ToString().ToLower(); //not sure if this is right, i couldnt get it work otherwise
 
-                switch (selectedClass)
-                {
-                    case "Fighter":
-                        ClassFrame.Navigate(new FighterPage());
-                        break;
-                }
+                if (ClassLbx.SelectedItem == null) return;
+
+                ClassFrame.Navigate(new FighterPage(selectedClass));
             }
         }
 

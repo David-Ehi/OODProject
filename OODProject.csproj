@@ -118,7 +118,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="FighterPage.xaml">
+    <Page Include="ClassPage.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -143,8 +143,9 @@
       <DependentUpon>CreateCharWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="DndClasses.cs" />
-    <Compile Include="FighterPage.xaml.cs">
-      <DependentUpon>FighterPage.xaml</DependentUpon>
+    <Compile Include="Features.cs" />
+    <Compile Include="ClassPage.xaml.cs">
+      <DependentUpon>ClassPage.xaml</DependentUpon>
     </Compile>
     <Compile Include="MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>

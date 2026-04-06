@@ -22,11 +22,12 @@ namespace OODProject
     /// </summary>
     public partial class FighterPage : Page
     {
-        static string selectedClass = "fighter"; // This should be set based on user selection
-
-        public FighterPage()
+        private string selectedClass;
+        public FighterPage(string Class)
         {
+            
             InitializeComponent();
+            selectedClass = Class;
         }
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
