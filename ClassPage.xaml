@@ -30,12 +30,12 @@
             <ScrollViewer VerticalScrollBarVisibility="Auto">
                 <StackPanel>
 
-                    <TextBlock Text="Fighter Creation"
-                               FontSize="22"
-                               FontWeight="Bold"
-                               Foreground="#B22222"
-                               FontFamily="Georgia"
-                               Margin="0,0,0,20"/>
+                    <TextBlock x:Name="ClassTitleTxt"
+                       FontSize="22"
+                       FontWeight="Bold"
+                       Foreground="#B22222"
+                       FontFamily="Georgia"
+                       Margin="0,0,0,20"/>
 
                     <TextBlock Text="Hit Points"
                                Foreground="#B22222"
@@ -187,30 +187,30 @@
 
             <StackPanel>
 
-                <TextBlock Text="Subclass"
+                <StackPanel x:Name="SubclassPanel" Visibility="Collapsed">
+                    <TextBlock Text="Subclass"
                            FontSize="18"
                            FontWeight="Bold"
                            Foreground="#B22222"
                            Margin="0,0,0,10"/>
 
-                <ComboBox x:Name="SubclassCbBx"
-                          Width="220"
-                          Margin="0,0,0,20"/>
+                    <ComboBox x:Name="SubclassCbBx"
+                          DisplayMemberPath="name"
+                          Width="220"/>
+                </StackPanel>
 
-                <TextBlock Text="Fighting Style"
-                           FontSize="18"
-                           FontWeight="Bold"
-                           Foreground="#B22222"
-                           Margin="0,0,0,10"/>
+                <StackPanel x:Name="FightingStylePanel">
 
-                <ComboBox x:Name="fightingstylecbobx"
-                          Width="220"
-                          Margin="0,0,0,20">
-                    <ComboBoxItem Content="Defense"/>
-                    <ComboBoxItem Content="Dueling"/>
-                    <ComboBoxItem Content="Great Weapon Fighting"/>
-                    <ComboBoxItem Content="Two Weapon Fighting"/>
-                </ComboBox>
+                    <TextBlock Text="Fighting Style"
+                       FontSize="18"
+                       FontWeight="Bold"
+                       Foreground="#B22222"
+                       Margin="0,0,0,10"/>
+
+                    <ComboBox x:Name="fightingstylecbobx"
+                      Width="220"
+                      Margin="0,0,0,20"/>
+                </StackPanel>
 
                 <GroupBox Header="Skills (Choose Two)"
                           Foreground="#B22222"

@@ -32,14 +32,19 @@ namespace OODProject
 
         private async void Page_Loaded(object sender, RoutedEventArgs e)
         {
-            await FighterClassApi();
+            ClassTitleTxt.Text = $"{selectedClass.ToUpper()} Creation"; // sets the title of the page to the selected class
+            if (selectedClass != "fighter") // if the selected class is not fighter, we hide the fighting style panel since it is only relevant for fighters
+            {
+                FightingStylePanel.Visibility = Visibility.Collapsed;
+            }
+            await GeneralClassApi();
         }
 
-        public async Task FighterClassApi()
+        public async Task GeneralClassApi()
         {
 
             var client = new HttpClient();
-            var request = new HttpRequestMessage(HttpMethod.Get, $"https://www.dnd5eapi.co/api/2014/classes/fighter");
+            var request = new HttpRequestMessage(HttpMethod.Get, $"https://www.dnd5eapi.co/api/2014/classes/{selectedClass}");
             var response = await client.SendAsync(request);
             response.EnsureSuccessStatusCode();
             var body = await response.Content.ReadAsStringAsync();
@@ -137,7 +142,23 @@ namespace OODProject
 
             ClassFeaturelbx.ItemsSource = totalFeatures;
 
-        
+
+            #region if subclass lvl
+
+            int level = LvlCbx.SelectedIndex + 1;
+            int subclassLevel = GetSubclassLevel(selectedClass);
+
+            if (level >= subclassLevel)
+            {
+                SubclassPanel.Visibility = Visibility.Visible;
+            }
+            else
+            {
+                SubclassPanel.Visibility = Visibility.Collapsed;
+            }
+
+            #endregion
+
 
             #region Proficiency Bonus
             Profbonistxbk.Text = $"Proficiency Bonus: {DetermineProficiencyBonus(selectedLevel)}";
@@ -145,6 +166,25 @@ namespace OODProject
 
 
         }
+
+        #region Subclass Level
+        public int GetSubclassLevel(string className)
+        {
+            switch (className.ToLower())
+            {
+                case "cleric":
+                case "warlock":
+                    return 1;
+
+                case "wizard":
+                    return 2;
+
+                default:
+                    return 3;
+            }
+        }   
+        #endregion
+
 
         #region caching class levels
         private List<ClassLevel> _cachedLevels; //to make thing more efficient, we cache the levels for the selected class so we dont have to make multiple api calls when the user changes the level selection
