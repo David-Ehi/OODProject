@@ -3,17 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 
 namespace OODProject
 {
@@ -253,6 +246,8 @@ namespace OODProject
                 db.Players.Add(player);
                 db.SaveChanges();
 
+                CreateCharWindow.GetWindow(this).Close(); // Close the character creation window after saving
+
 
                 MessageBox.Show("Character saved successfully");
             }
@@ -307,13 +302,9 @@ namespace OODProject
 
         }
 
-        private void ClosePopup_Click(object sender, RoutedEventArgs e)
-        {
-            FeatureDescPopup.IsOpen = false;
-        }
 
 
-        private async Task GetFeatureDesc(string index)
+        public async Task GetFeatureDesc(string index)
         {
             var client = new HttpClient();
 
@@ -325,6 +316,31 @@ namespace OODProject
             PopupDetailTxt.Text = string.Join("\n", featureDesc.desc); //the description is a list of strings, we join them together with newlines to display them in the textbox
         }
 
+        #region Health Stuff
+        public int CalculateHealth(int hitDie, int level, int constitution)
+        {
+            int conModifier = (constitution - 10) / 2;
+            int levelOneHp = hitDie + conModifier;
+            int additionalHp = (int)Math.Ceiling(hitDie / 2.0 + 0.5) + conModifier; // average rounded up
+
+            return levelOneHp + (additionalHp * (level - 1));
+        }
+
+        private void HealthRollBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            if (string.IsNullOrEmpty(ConTbx.Text))
+            {
+                MessageBox.Show("Please enter a constitution score to calculate health.");
+                return;
+            }
+
+            int hitDie = int.Parse(HitDieTxbl.Text.Split('d')[1]);
+            int level = LvlCbx.SelectedIndex + 1;
+            int con = int.Parse(ConTbx.Text);
+
+            HpTbx.Text = CalculateHealth(hitDie, level, con).ToString(); // we calculate the health using the hit die, level and constitution score, and display it in the HP textbox
+        }
+        #endregion
     }
 
 }

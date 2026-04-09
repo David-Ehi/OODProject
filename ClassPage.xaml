@@ -40,12 +40,23 @@
                     <TextBlock Text="Hit Points"
                                Foreground="#B22222"
                                FontWeight="Bold"/>
-                    <TextBox x:Name="HpTbx"
+                    <StackPanel Orientation="Horizontal" Margin="0, 5, 0, 15">
+                        <TextBox x:Name="HpTbx"
                              Width="80"
-                             Margin="0,5,0,15"
                              Background="#2E2E2E"
                              Foreground="#DDDDDD"
-                             BorderBrush="#8B0000"/>
+                             BorderBrush="#8B0000"
+                             HorizontalAlignment="Left"/>
+                        <Button x:Name="HealthRollBtn"
+                            Content="Roll Health"
+                            Height="30"
+                            Background="#8B0000"
+                            Foreground="White"
+                            FontWeight="Bold"
+                            BorderThickness="0" 
+                            Width="110"
+                            Margin="10,0,0,0" Click="HealthRollBtn_Click_1"/>
+                    </StackPanel>
 
                     <TextBlock Text="Hit Die"
                                Foreground="#B22222"
@@ -68,6 +79,8 @@
                                FontWeight="Bold"/>
                     <ComboBox x:Name="LvlCbx"
                               Width="100"
+                              Background="#2E2E2E"
+                              HorizontalAlignment="left"
                               Margin="0,5,0,15"
                               SelectionChanged="LvlCbx_SelectionChanged">
                         <ComboBoxItem Content="1"/>
@@ -245,13 +258,13 @@
             </StackPanel>
 
         </Border>
-        
-        
+
+
         <Popup x:Name="FeatureDescPopup"
            StaysOpen="False"
            Placement="MousePoint">
 
-        <Border Background="#3A3A3A"
+            <Border Background="#3A3A3A"
                 BorderBrush="#8B0000"
                 BorderThickness="2"
                 CornerRadius="8"
@@ -264,14 +277,14 @@
                            FontWeight="Bold"
                            FontSize="16"
                            Margin="0,0,0,5"/>
-                <TextBlock x:Name="PopupDetailTxt"
+                    <TextBlock x:Name="PopupDetailTxt"
                            Foreground="#DDDDDD"
                            TextWrapping="Wrap"/>
-            </StackPanel>
+                </StackPanel>
 
-        </Border>
+            </Border>
 
-    </Popup>
+        </Popup>
 
     </Grid>
 
