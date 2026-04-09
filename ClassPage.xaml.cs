@@ -77,29 +77,7 @@ namespace OODProject
                 SubclassCbBx.ItemsSource = Classinfo.subclasses;
             }
         }
-        private void RollStatsBtn_Click(object sender, RoutedEventArgs e)
-        {
-            StrTbx.Text = RollStat().ToString();
-            DexTbx.Text = RollStat().ToString();
-            ConTbx.Text = RollStat().ToString();
-            IntTbx.Text = RollStat().ToString();
-            WisTbx.Text = RollStat().ToString();
-            ChaTbx.Text = RollStat().ToString();
-        }
-        public int RollStat()
-        {
-            Random rnd = new Random();
 
-            List<int> rolls = new List<int>();
-
-            for (int i = 0; i < 4; i++)
-                rolls.Add(rnd.Next(1, 7));
-
-            rolls.Sort();
-            rolls.RemoveAt(0);
-
-            return rolls.Sum();
-        }
 
 
         public async Task<List<Feature>> GetFeaturesForLevel(string className, int level) //gets all features for a given class and level, used to populate the listbox with the features of the selected class and level
@@ -286,6 +264,67 @@ namespace OODProject
 
 
         }
+
+
+        #region RollStats
+        Random rnd = new Random();
+        private void RollStatsBtn_Click_1(object sender, RoutedEventArgs e)
+        {
+            StrTbx.Text = RollStat().ToString();
+            DexTbx.Text = RollStat().ToString();
+            ConTbx.Text = RollStat().ToString();
+            IntTbx.Text = RollStat().ToString();
+            WisTbx.Text = RollStat().ToString();
+            ChaTbx.Text = RollStat().ToString();
+        }
+        public int RollStat()
+        {
+
+            List<int> rolls = new List<int>();
+
+            for (int i = 0; i < 4; i++)
+                rolls.Add(rnd.Next(1, 7));
+
+            rolls.Sort();
+            rolls.RemoveAt(0);
+            //rolls and removes lowest
+
+            return rolls.Sum();
+        }
+        #endregion
+
+        private async void ClassFeaturelbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ClassFeaturelbx.SelectedItem == null) return;
+
+            PopupNameTxt.Text = (ClassFeaturelbx.SelectedItem as Feature).name;
+
+            PopupDetailTxt.Text = $"Feature Index: {(ClassFeaturelbx.SelectedItem as Feature).index}\n" +
+                $"URL: {(ClassFeaturelbx.SelectedItem as Feature).url}";
+            await GetFeatureDesc((ClassFeaturelbx.SelectedItem as Feature).index); // we get the feature description using the index of the selected feature, this way we can display the description in the popup
+
+            FeatureDescPopup.IsOpen = true;
+
+        }
+
+        private void ClosePopup_Click(object sender, RoutedEventArgs e)
+        {
+            FeatureDescPopup.IsOpen = false;
+        }
+
+
+        private async Task GetFeatureDesc(string index)
+        {
+            var client = new HttpClient();
+
+            string body = await client.GetStringAsync(
+                $"https://www.dnd5eapi.co/api/2014/features/{index}");
+
+            Features featureDesc = JsonConvert.DeserializeObject<Features>(body);
+
+            PopupDetailTxt.Text = string.Join("\n", featureDesc.desc); //the description is a list of strings, we join them together with newlines to display them in the textbox
+        }
+
     }
-    
+
 }

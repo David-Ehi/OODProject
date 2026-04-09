@@ -108,9 +108,7 @@ namespace OODProject
             
             Features featureDesc = JsonConvert.DeserializeObject<Features>(body);
 
-            FeatureDescTbx.Text = featureDesc.desc;
-
-
+            FeatureDescTbx.Text = string.Join("\n", featureDesc.desc); //the description is a list of strings, we join them together with newlines to display them in the textbox
         }
 
     }

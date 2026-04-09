@@ -12,6 +12,6 @@ namespace OODProject
         [Key]
 
         public string index { get; set; }
-        public string desc { get; set; }
+        public List<string> desc { get; set; }
     }
 }
