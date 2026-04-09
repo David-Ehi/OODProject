@@ -31,6 +31,7 @@ namespace OODProject
                 FightingStylePanel.Visibility = Visibility.Collapsed;
             }
             await GeneralClassApi();
+            LoadSkillsForClass(selectedClass);
             LvlCbx.SelectedIndex = 0; // set the level combo box to level 1 by default
         }
 
@@ -235,7 +236,6 @@ namespace OODProject
                 character.Wisdom = Wis;
                 character.Intelligence = Int;
                 character.Charisma = Cha;
-
                 character.ProficencyBonus = Profbonus;
 
 
@@ -341,6 +341,174 @@ namespace OODProject
             HpTbx.Text = CalculateHealth(hitDie, level, con).ToString(); // we calculate the health using the hit die, level and constitution score, and display it in the HP textbox
         }
         #endregion
+
+
+        public void LoadSkillsForClass(string className)
+        {
+            // hide all first
+            SkillAcrobatics.Visibility = Visibility.Collapsed;
+            SkillAnimalHandling.Visibility = Visibility.Collapsed;
+            SkillAthletics.Visibility = Visibility.Collapsed;
+            SkillArcana.Visibility = Visibility.Collapsed;
+            SkillDeception.Visibility = Visibility.Collapsed;
+            SkillHistory.Visibility = Visibility.Collapsed;
+            SkillInsight.Visibility = Visibility.Collapsed;
+            SkillIntimidation.Visibility = Visibility.Collapsed;
+            SkillInvestigation.Visibility = Visibility.Collapsed;
+            SkillMedicine.Visibility = Visibility.Collapsed;
+            SkillNature.Visibility = Visibility.Collapsed;
+            SkillPerception.Visibility = Visibility.Collapsed;
+            SkillPerformance.Visibility = Visibility.Collapsed;
+            SkillPersuasion.Visibility = Visibility.Collapsed;
+            SkillReligion.Visibility = Visibility.Collapsed;
+            SkillSleightOfHand.Visibility = Visibility.Collapsed;
+            SkillStealth.Visibility = Visibility.Collapsed;
+            SkillSurvival.Visibility = Visibility.Collapsed;
+
+            switch (className.ToLower())
+            {
+                case "barbarian": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillAnimalHandling.Visibility = Visibility.Visible;
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillNature.Visibility = Visibility.Visible;
+                    SkillPerception.Visibility = Visibility.Visible;
+                    SkillSurvival.Visibility = Visibility.Visible;
+                    break;
+
+                case "bard": // choose 3
+                    SkillsHeaderTxt.Text = "Skills (Choose Three)";
+                    SkillAcrobatics.Visibility = Visibility.Visible;
+                    SkillAnimalHandling.Visibility = Visibility.Visible;
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillDeception.Visibility = Visibility.Visible;
+                    SkillHistory.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillInvestigation.Visibility = Visibility.Visible;
+                    SkillMedicine.Visibility = Visibility.Visible;
+                    SkillNature.Visibility = Visibility.Visible;
+                    SkillPerception.Visibility = Visibility.Visible;
+                    SkillPerformance.Visibility = Visibility.Visible;
+                    SkillPersuasion.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    SkillSleightOfHand.Visibility = Visibility.Visible;
+                    SkillStealth.Visibility = Visibility.Visible;
+                    SkillSurvival.Visibility = Visibility.Visible;
+                    break;
+
+                case "cleric": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillHistory.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillMedicine.Visibility = Visibility.Visible;
+                    SkillPersuasion.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    break;
+
+                case "druid": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillArcana.Visibility = Visibility.Visible;
+                    SkillAnimalHandling.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillMedicine.Visibility = Visibility.Visible;
+                    SkillNature.Visibility = Visibility.Visible;
+                    SkillPerception.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    SkillSurvival.Visibility = Visibility.Visible;
+                    break;
+
+                case "fighter": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillAcrobatics.Visibility = Visibility.Visible;
+                    SkillAnimalHandling.Visibility = Visibility.Visible;
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillHistory.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillPerception.Visibility = Visibility.Visible;
+                    SkillSurvival.Visibility = Visibility.Visible;
+                    break;
+
+                case "monk": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillAcrobatics.Visibility = Visibility.Visible;
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillHistory.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    SkillStealth.Visibility = Visibility.Visible;
+                    break;
+
+                case "paladin": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillMedicine.Visibility = Visibility.Visible;
+                    SkillPersuasion.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    break;
+
+                case "ranger": // choose 3
+                    SkillsHeaderTxt.Text = "Skills (Choose Three)";
+                    SkillAnimalHandling.Visibility = Visibility.Visible;
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillInvestigation.Visibility = Visibility.Visible;
+                    SkillNature.Visibility = Visibility.Visible;
+                    SkillPerception.Visibility = Visibility.Visible;
+                    SkillStealth.Visibility = Visibility.Visible;
+                    SkillSurvival.Visibility = Visibility.Visible;
+                    break;
+
+                case "rogue": // choose 4
+                    SkillsHeaderTxt.Text = "Skills (Choose Four)";
+                    SkillAcrobatics.Visibility = Visibility.Visible;
+                    SkillAthletics.Visibility = Visibility.Visible;
+                    SkillDeception.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillInvestigation.Visibility = Visibility.Visible;
+                    SkillPerception.Visibility = Visibility.Visible;
+                    SkillPersuasion.Visibility = Visibility.Visible;
+                    SkillSleightOfHand.Visibility = Visibility.Visible;
+                    SkillStealth.Visibility = Visibility.Visible;
+                    break;
+
+                case "sorcerer": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillArcana.Visibility = Visibility.Visible;
+                    SkillDeception.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillPersuasion.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    break;
+
+                case "warlock": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillArcana.Visibility = Visibility.Visible;
+                    SkillDeception.Visibility = Visibility.Visible;
+                    SkillHistory.Visibility = Visibility.Visible;
+                    SkillIntimidation.Visibility = Visibility.Visible;
+                    SkillInvestigation.Visibility = Visibility.Visible;
+                    SkillNature.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    break;
+
+                case "wizard": // choose 2
+                    SkillsHeaderTxt.Text = "Skills (Choose Two)";
+                    SkillArcana.Visibility = Visibility.Visible;
+                    SkillHistory.Visibility = Visibility.Visible;
+                    SkillInsight.Visibility = Visibility.Visible;
+                    SkillInvestigation.Visibility = Visibility.Visible;
+                    SkillMedicine.Visibility = Visibility.Visible;
+                    SkillReligion.Visibility = Visibility.Visible;
+                    break;
+            }
+        }
     }
 
 }

@@ -237,23 +237,37 @@
                       Margin="0,0,0,20"/>
                 </StackPanel>
 
-                <GroupBox Header="Skills (Choose Two)"
-                          Foreground="#B22222"
-                          BorderBrush="#8B0000"
-                          BorderThickness="1">
-
+                <Border BorderBrush="#8B0000"
+        BorderThickness="1"
+        CornerRadius="5"
+        Padding="10"
+        Margin="0,10,0,0">
                     <StackPanel>
-                        <CheckBox Content="Acrobatics" x:Name="SkillAcrobatics"/>
-                        <CheckBox Content="Animal Handling" x:Name="SkillAnimalHandling"/>
-                        <CheckBox Content="Athletics" x:Name="SkillAthletics"/>
-                        <CheckBox Content="History" x:Name="SkillHistory"/>
-                        <CheckBox Content="Insight" x:Name="SkillInsight"/>
-                        <CheckBox Content="Intimidation" x:Name="SkillIntimidation"/>
-                        <CheckBox Content="Perception" x:Name="SkillPerception"/>
-                        <CheckBox Content="Survival" x:Name="SkillSurvival"/>
+                        <TextBlock x:Name="SkillsHeaderTxt" 
+                   Text="Skills (Choose Two)"
+                   Foreground="#B22222"
+                   FontWeight="Bold"
+                   Margin="0,0,0,8"/>
+                        <CheckBox Content="Acrobatics" x:Name="SkillAcrobatics" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Animal Handling" x:Name="SkillAnimalHandling" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Athletics" x:Name="SkillAthletics" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Arcana" x:Name="SkillArcana" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Deception" x:Name="SkillDeception" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="History" x:Name="SkillHistory" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Insight" x:Name="SkillInsight" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Intimidation" x:Name="SkillIntimidation" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Investigation" x:Name="SkillInvestigation" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Medicine" x:Name="SkillMedicine" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Nature" x:Name="SkillNature" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Perception" x:Name="SkillPerception" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Performance" x:Name="SkillPerformance" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Persuasion" x:Name="SkillPersuasion" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Religion" x:Name="SkillReligion" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Sleight of Hand" x:Name="SkillSleightOfHand" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Stealth" x:Name="SkillStealth" Foreground="#DDDDDD" Visibility="Collapsed"/>
+                        <CheckBox Content="Survival" x:Name="SkillSurvival" Foreground="#DDDDDD" Visibility="Collapsed"/>
                     </StackPanel>
-
-                </GroupBox>
+                </Border>
 
             </StackPanel>
 
