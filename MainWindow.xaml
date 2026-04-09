@@ -78,7 +78,7 @@
                 <Button x:Name="SelectBtn"
                         Grid.Row="2"
                         Height="45"
-                        Margin="0,15,0,0"
+                        Margin="0,15,66,0"
                         Content="Select Character"
                         Click="SelectBtn_Click"
                         Background="#2E2E2E"
@@ -87,6 +87,19 @@
                         BorderThickness="2"
                         FontWeight="Bold"
                         FontFamily="Georgia"/>
+
+                <Button x:Name="RefreshBtn"
+        Grid.Row="2"
+        Height="45"
+        Margin="229,15,10,0"
+        FontSize="20"
+        Content="⟳"
+        Background="#2E2E2E"
+        Foreground="#B22222"
+        BorderBrush="{StaticResource RedAccent}"
+        BorderThickness="2"
+        FontWeight="Bold"
+        FontFamily="Georgia" Click="RefreshBtn_Click"/>
 
             </Grid>
         </Border>

@@ -20,6 +20,7 @@ namespace OODProject
     public partial class CharWindow : Window
     {
         private Characters character;
+        Random rand = new Random();
         public CharWindow(Characters charactersFromMain)
         {
             InitializeComponent();
@@ -53,42 +54,36 @@ namespace OODProject
         private void D20Btn_Click(object sender, RoutedEventArgs e)
         {
             //Simulates rolling a d20 and shows the result in a message box
-            Random rand = new Random();
             int roll = rand.Next(1, 21);
             MessageBox.Show($"You rolled a {roll}");
         }
 
         private void D12Btn_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
             int roll = rand.Next(1, 13);
             MessageBox.Show($"You rolled a {roll}");
         }
 
         private void D10Btn_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
             int roll = rand.Next(1, 11);
             MessageBox.Show($"You rolled a {roll}");
         }
 
         private void D8Btn_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
             int roll = rand.Next(1, 9);
             MessageBox.Show($"You rolled a {roll}");
         }
 
         private void D6Btn_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
             int roll = rand.Next(1, 7);
             MessageBox.Show($"You rolled a {roll}");
         }
 
         private void D4Btn_Click(object sender, RoutedEventArgs e)
         {
-            Random rand = new Random();
             int roll = rand.Next(1, 4);
             MessageBox.Show($"You rolled a {roll}");
         }

@@ -20,10 +20,10 @@ namespace OODProject
     /// <summary>
     /// Interaction logic for FighterPage.xaml
     /// </summary>
-    public partial class FighterPage : Page
+    public partial class ClassPage : Page
     {
         private string selectedClass;
-        public FighterPage(string Class)
+        public ClassPage(string Class)
         {
             
             InitializeComponent();
@@ -38,6 +38,7 @@ namespace OODProject
                 FightingStylePanel.Visibility = Visibility.Collapsed;
             }
             await GeneralClassApi();
+            LvlCbx.SelectedIndex = 0; // set the level combo box to level 1 by default
         }
 
         public async Task GeneralClassApi()
@@ -100,13 +101,6 @@ namespace OODProject
             return rolls.Sum();
         }
 
-        private void RollHpBtn_Click(object sender, RoutedEventArgs e)
-        {
-            Random rnd = new Random();
-
-            int hp = rnd.Next(1, 11); // Fighter d10
-            HpTbx.Text = hp.ToString();
-        }
 
         public async Task<List<Feature>> GetFeaturesForLevel(string className, int level) //gets all features for a given class and level, used to populate the listbox with the features of the selected class and level
         {
@@ -235,9 +229,10 @@ namespace OODProject
 
         private async void SaveCharacter_Click(object sender, RoutedEventArgs e)
         {
+
+
+            try
             {
-
-
                 PlayerData db = new PlayerData();
 
                 var selectedSkills = GetSelectedSkills();
@@ -282,10 +277,14 @@ namespace OODProject
 
 
                 MessageBox.Show("Character saved successfully");
-
-
-
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error saving character: {ex.Message}");
+            }
+
+
+
         }
     }
     

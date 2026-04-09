@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OODProject"
         mc:Ignorable="d"
         Title="Create Character"
-        Height="550"
+        Height="650"
         Width="1000"
         Background="#2E2E2E"
         Loaded="Window_Loaded">
@@ -38,7 +38,9 @@
                          SelectionChanged="ClassLbx_SelectionChanged"
                          Background="#2E2E2E"
                          Foreground="#DDDDDD"
-                         BorderBrush="#8B0000">
+                         BorderBrush="#8B0000"
+                         Height="auto">
+                    
 
 
                 </ListBox>

@@ -23,12 +23,6 @@ namespace OODProject
     /// </summary>
     /// 
 
-    // TO DO
-    // link api
-    // save to characters to database instead of json file
-
-
-
 
     public partial class MainWindow : Window
     {
@@ -50,60 +44,25 @@ namespace OODProject
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
 
-            #region Generate Test Data
-            ////Test player for example
-            //PlayerData db = new PlayerData();
+            LoadCharacters();
 
-            //using (db)
-            //{
-            //    // Create a test player
-            //    Player TestPlayer = new Player();
-            //    TestPlayer.Name = "David Ehiagwina";
 
-            //    // Create a test character with full stats
-            //    Characters TestCharacter = new Characters();
-            //    TestCharacter.Name = "Arthas the Brave";
-            //    TestCharacter.Description = "A courageous knight from the kingdom of Lordaeron. Known for his strength and honor.";
-            //    TestCharacter.Class = "Paladin";
-            //    TestCharacter.Level = 5;
-            //    TestCharacter.Strength = 18;
-            //    TestCharacter.Constitution = 16;
-            //    TestCharacter.Wisdom = 14;
-            //    TestCharacter.Intelligence = 12;
-            //    TestCharacter.Dexterity = 13;
-            //    TestCharacter.Charisma = 15;
-            //    TestCharacter.HP = 45;
-            //    TestCharacter.AC = 17;
+        }
 
-            //    // Link character to the player
-            //    TestCharacter.Player = TestPlayer;
-            //    TestPlayer.Characters.Add(TestCharacter);
-
-            //    // Add to database
-            //    db.Players.Add(TestPlayer);
-            //    db.Characters.Add(TestCharacter);
-
-            //    db.SaveChanges();
-
-            //    MessageBox.Show("Player and test character added to database!");
-            //}
-
-            #endregion 
-
-            //^^^^^ New test data code that adds a player and character to the database. Uncomment to use. ^^^^^
-
+        private void LoadCharacters()
+        {
+            //loads the characters from the database and displays them in the listbox
             List<Characters> characters = new List<Characters>();
 
             using (var db = new PlayerData())
             {
 
                 characters = db.Characters
-                               .Include("Player") 
+                               .Include("Player")
                                .ToList();
             }
 
             CharLbx.ItemsSource = characters;
-
         }
 
         //When the user selects a character from the listbox, display the description in the textbox
@@ -133,14 +92,11 @@ namespace OODProject
             CreateCharWindow createWindow = new CreateCharWindow();
             createWindow.Show();
 
+        }
 
-            //CharacterCreationPage page = new CharacterCreationPage();
-
-            //NavigationService ns = this.NavigationService;
-
-            //ns.Navigate(page);
-
-
+        private void RefreshBtn_Click(object sender, RoutedEventArgs e)
+        {
+            LoadCharacters();
         }
     }
 }
