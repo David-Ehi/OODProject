@@ -153,22 +153,24 @@
                 <UniformGrid Columns="2" Rows="6">
 
                     <TextBlock Text="STR" Foreground="#DDDDDD"/>
-                    <TextBox x:Name="StrTbx"/>
+                    <TextBox x:Name="StrTbx"
+                             Width="80"
+                             HorizontalAlignment="Right"/>
 
                     <TextBlock Text="DEX" Foreground="#DDDDDD"/>
-                    <TextBox x:Name="DexTbx"/>
+                    <TextBox x:Name="DexTbx" Width="80" HorizontalAlignment="Right"/>
 
                     <TextBlock Text="CON" Foreground="#DDDDDD"/>
-                    <TextBox x:Name="ConTbx"/>
+                    <TextBox x:Name="ConTbx" Width="80" HorizontalAlignment="Right"/>
 
                     <TextBlock Text="INT" Foreground="#DDDDDD"/>
-                    <TextBox x:Name="IntTbx"/>
+                    <TextBox x:Name="IntTbx" Width="80" HorizontalAlignment="Right"/>
 
                     <TextBlock Text="WIS" Foreground="#DDDDDD"/>
-                    <TextBox x:Name="WisTbx"/>
+                    <TextBox x:Name="WisTbx" Width="80" HorizontalAlignment="Right"/>
 
                     <TextBlock Text="CHA" Foreground="#DDDDDD"/>
-                    <TextBox x:Name="ChaTbx"/>
+                    <TextBox x:Name="ChaTbx" Width="80" HorizontalAlignment="Right"/>
 
                 </UniformGrid>
 

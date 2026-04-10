@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Controls.Primitives;
 using System.Windows.Input;
 
 namespace OODProject
@@ -205,12 +206,40 @@ namespace OODProject
 
             try
             {
+
+
                 PlayerData db = new PlayerData();
 
+                int allowed = GetAllowedSkillCount(selectedClass);
+                int selected = GetSelectedSkillCount();
                 var selectedSkills = GetSelectedSkills();
                 int level = LvlCbx.SelectedIndex + 1;
                 string charactername = CharacterNametbx.Text;
                 string playername = playernametbx.Text;
+
+                if (playername == "")
+                {
+                    MessageBox.Show($"Please enter a player name");
+                    return;
+                }
+
+                if (charactername == "")
+                {
+                    MessageBox.Show($"Please enter a character name");
+                    return;
+                }
+
+                if (selected != allowed)
+                {
+                    MessageBox.Show($"Please select exactly {allowed} skills for your {selectedClass}.");
+                    return;
+                }
+
+                if (HpTbx.Text == "")
+                {
+                    MessageBox.Show($"Please enter a health value or roll for one.");
+                    return;
+                }
 
                 int Str = int.Parse(StrTbx.Text);
                 int Con = int.Parse(ConTbx.Text);
@@ -246,6 +275,9 @@ namespace OODProject
                 db.Players.Add(player);
                 db.SaveChanges();
 
+
+
+
                 CreateCharWindow.GetWindow(this).Close(); // Close the character creation window after saving
 
 
@@ -259,7 +291,6 @@ namespace OODProject
 
 
         }
-
 
         #region RollStats
         Random rnd = new Random();
@@ -507,6 +538,35 @@ namespace OODProject
                     SkillMedicine.Visibility = Visibility.Visible;
                     SkillReligion.Visibility = Visibility.Visible;
                     break;
+            }
+        }
+
+        public int GetSelectedSkillCount()
+        {
+            var allSkills = new List<CheckBox>
+    {
+        SkillAcrobatics, SkillAnimalHandling, SkillAthletics, SkillArcana,
+        SkillDeception, SkillHistory, SkillInsight, SkillIntimidation,
+        SkillInvestigation, SkillMedicine, SkillNature, SkillPerception,
+        SkillPerformance, SkillPersuasion, SkillReligion, SkillSleightOfHand,
+        SkillStealth, SkillSurvival
+    };
+
+            return allSkills.Count(c => c.IsChecked == true);
+        }
+
+        public int GetAllowedSkillCount(string className)
+        {
+            switch (className.ToLower())
+            {
+                case "bard":
+                    return 3;
+                case "ranger":
+                    return 3;
+                case "rogue":
+                    return 4;
+                default:
+                    return 2;
             }
         }
     }

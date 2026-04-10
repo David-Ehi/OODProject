@@ -7,7 +7,7 @@
         mc:Ignorable="d"
         Title="Create Character"
         Height="650"
-        Width="1000"
+        Width="1300"
         Background="#2E2E2E"
         Loaded="Window_Loaded">
 
