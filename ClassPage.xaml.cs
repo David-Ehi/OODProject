@@ -202,12 +202,8 @@ namespace OODProject
 
         private async void SaveCharacter_Click(object sender, RoutedEventArgs e)
         {
-
-
             try
             {
-
-
                 PlayerData db = new PlayerData();
 
                 int allowed = GetAllowedSkillCount(selectedClass);
@@ -217,7 +213,7 @@ namespace OODProject
                 string charactername = CharacterNametbx.Text;
                 string playername = playernametbx.Text;
 
-                if (playername == "")
+                if (playername == "") // we validate the input, if the player name is empty we show a message box and return, we do this for all required fields
                 {
                     MessageBox.Show($"Please enter a player name");
                     return;
@@ -267,6 +263,8 @@ namespace OODProject
                 character.Charisma = Cha;
                 character.ProficencyBonus = Profbonus;
 
+                
+                character.IsSpellCaster =IsSpellcasterMethod(selectedClass); // we determine if the character is a spellcaster based on the selected class, this will be used later to determine if we need to show spell slots and spells for the character
 
                 character.Player = player;
                 player.Characters.Add(character);
@@ -274,8 +272,6 @@ namespace OODProject
                 db.Characters.Add(character);
                 db.Players.Add(player);
                 db.SaveChanges();
-
-
 
 
                 CreateCharWindow.GetWindow(this).Close(); // Close the character creation window after saving
@@ -567,6 +563,23 @@ namespace OODProject
                     return 4;
                 default:
                     return 2;
+            }
+        }
+
+        public bool IsSpellcasterMethod(string className)
+        {
+            switch (className.ToLower())
+            {
+                case "wizard":
+                case "sorcerer":
+                case "warlock":
+                case "cleric":
+                case "druid":
+                case "bard":
+                case "paladin":
+                    return true;
+                default:
+                    return false;
             }
         }
     }

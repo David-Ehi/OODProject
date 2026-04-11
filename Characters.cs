@@ -26,7 +26,9 @@ namespace OODProject
         public int HP { get; set; }
         public int AC { get; set; }
 
-        
+        public string Skills { get; set; }
+
+        public bool IsSpellCaster { get; set; }
         public int SpellSlotsLevel1 { get; set; }
         public int SpellSlotsLevel2 { get; set; }
         public int SpellSlotsLevel3 { get; set; }

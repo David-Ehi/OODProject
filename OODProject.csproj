@@ -153,6 +153,19 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Migrations\202603151705130_InitialCreate.cs" />
+    <Compile Include="Migrations\202603151705130_InitialCreate.Designer.cs">
+      <DependentUpon>202603151705130_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202604101517238_AddSkillsToCharacters.cs" />
+    <Compile Include="Migrations\202604101517238_AddSkillsToCharacters.Designer.cs">
+      <DependentUpon>202604101517238_AddSkillsToCharacters.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202604112207014_AddCheckSpellCaster.cs" />
+    <Compile Include="Migrations\202604112207014_AddCheckSpellCaster.Designer.cs">
+      <DependentUpon>202604112207014_AddCheckSpellCaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -166,6 +179,15 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <EmbeddedResource Include="Migrations\202603151705130_InitialCreate.resx">
+      <DependentUpon>202603151705130_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604101517238_AddSkillsToCharacters.resx">
+      <DependentUpon>202604101517238_AddSkillsToCharacters.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604112207014_AddCheckSpellCaster.resx">
+      <DependentUpon>202604112207014_AddCheckSpellCaster.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
