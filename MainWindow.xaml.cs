@@ -98,5 +98,31 @@ namespace OODProject
         {
             LoadCharacters();
         }
+
+        private void DeleteBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Characters selectedChar = CharLbx.SelectedItem as Characters;
+            if (selectedChar == null)
+            {
+                MessageBox.Show("Please select a character to delete.");
+                return;
+            }
+
+            MessageBoxResult confirm = MessageBox.Show(
+                $"Are you sure you want to delete {selectedChar.Name}?",
+                "Confirm Delete",
+                MessageBoxButton.YesNo);
+
+            if (confirm == MessageBoxResult.Yes)
+            {
+                using (var db = new PlayerData())
+                {
+                    Characters charToDelete = db.Characters.Find(selectedChar.CharacterId);
+                    db.Characters.Remove(charToDelete);
+                    db.SaveChanges();
+                }
+                LoadCharacters();
+            }
+        }
     }
 }

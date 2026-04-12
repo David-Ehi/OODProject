@@ -141,17 +141,6 @@ namespace OODProject
             }
         }
 
-        public async Task GetSpellDetails(SpellResult spell)
-        {
-            var request = new HttpRequestMessage(HttpMethod.Get, $"https://www.dnd5eapi.co/api/2014/spells/{spell.index}");
-            request.Headers.Add("Accept", "application/json");
-            var response = await client.SendAsync(request);
-            response.EnsureSuccessStatusCode();
-            var body = await response.Content.ReadAsStringAsync();
-
-            var spells = JsonConvert.DeserializeObject<SpellListRoot>(body);
-        }
-
         private async void SaveSpellsBtn_Click(object sender, RoutedEventArgs e)
         {
 
@@ -178,7 +167,7 @@ namespace OODProject
                         {
                             Name = spell.name,
                             Level = spell.level,
-                            Description = string.Join("\n", spellDetail.desc) // We can store the URL for reference, but you might want to fetch and store more details about the spell here
+                            Description = string.Join("\n", spellDetail.desc) 
                         };
                         db.Spells.Add(existingSpell);
                     }
@@ -193,14 +182,14 @@ namespace OODProject
 
 
         }
-        private void RemoveSelectedSpell()
+        private void RemoveSelectedSpell() 
         {
             SpellResult selected = AddedSpellsLbx.SelectedItem as SpellResult;
             if (selected == null) return;
 
             AddedSpellsLbx.Items.Remove(selected);
 
-            using (var db = new PlayerData())
+            using (var db = new PlayerData()) 
             {
                 var dbChar = db.Characters.Include("Spells").FirstOrDefault(c => c.CharacterId == character.CharacterId);
                 var spellToRemove = dbChar.Spells.FirstOrDefault(s => s.Name == selected.name);

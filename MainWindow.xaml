@@ -74,32 +74,51 @@
                          d:ItemsSource="{d:SampleData ItemCount=5}"
                          SelectionChanged="CharLbx_SelectionChanged"/>
 
-                <!-- Select Button -->
-                <Button x:Name="SelectBtn"
-                        Grid.Row="2"
-                        Height="45"
-                        Margin="0,15,66,0"
-                        Content="Select Character"
-                        Click="SelectBtn_Click"
-                        Background="#2E2E2E"
-                        Foreground="#B22222"
-                        BorderBrush="{StaticResource RedAccent}"
-                        BorderThickness="2"
-                        FontWeight="Bold"
-                        FontFamily="Georgia"/>
+                <!-- Buttons -->
+                <StackPanel Grid.Row="2" 
+            Orientation="Horizontal" 
+            Margin="0,15,0,0"
+            HorizontalAlignment="Stretch">
 
-                <Button x:Name="RefreshBtn"
-        Grid.Row="2"
-        Height="45"
-        Margin="229,15,10,0"
-        FontSize="20"
-        Content="⟳"
-        Background="#2E2E2E"
-        Foreground="#B22222"
-        BorderBrush="{StaticResource RedAccent}"
-        BorderThickness="2"
-        FontWeight="Bold"
-        FontFamily="Georgia" Click="RefreshBtn_Click"/>
+                    <Button x:Name="SelectBtn"
+            Height="45"
+            Width="150"
+            Content="Select Character"
+            Click="SelectBtn_Click"
+            Background="#2E2E2E"
+            Foreground="#B22222"
+            BorderBrush="{StaticResource RedAccent}"
+            BorderThickness="2"
+            FontWeight="Bold"
+            FontFamily="Georgia"
+            Margin="0,0,5,0"/>
+
+                    <Button x:Name="DeleteBtn"
+            Height="45"
+            Width="60"
+            Content="🗑"
+            Click="DeleteBtn_Click"
+            Background="#2E2E2E"
+            Foreground="#B22222"
+            BorderBrush="{StaticResource RedAccent}"
+            BorderThickness="2"
+            FontSize="16"
+            Margin="0,0,5,0"/>
+
+                    <Button x:Name="RefreshBtn"
+            Height="45"
+            Width="60"
+            FontSize="20"
+            Content="⟳"
+            Click="RefreshBtn_Click"
+            Background="#2E2E2E"
+            Foreground="#B22222"
+            BorderBrush="{StaticResource RedAccent}"
+            BorderThickness="2"
+            FontWeight="Bold"
+            FontFamily="Georgia"/>
+
+                </StackPanel>
 
             </Grid>
         </Border>
