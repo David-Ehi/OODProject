@@ -39,7 +39,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="*"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*" x:Name="SpellColumn"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
 
@@ -68,15 +68,15 @@
 
                 <Label Name="CharSpellLabel"
                        Content="Spells"
-                       Grid.Column="1"
+                       Grid.Column="2"
                        Style="{StaticResource HeaderLabelStyle}"/>
 
                 <Label Name="CharAbilityLabel"
                        Content="Abilities"
-                       Grid.Column="2"
+                       Grid.Column="1"
                        Style="{StaticResource HeaderLabelStyle}"/>
 
-                <Label Content="Roll"
+                <Label Content="Extra Notes"
                        Grid.Column="3"
                        Style="{StaticResource HeaderLabelStyle}"/>
             </Grid>
@@ -94,31 +94,36 @@
 
             <StackPanel>
 
-                <TextBlock Text="Vitality"
+                <TextBlock Text="Health"
                            FontSize="18"
                            FontWeight="Bold"
                            FontFamily="Georgia"
                            Foreground="#B22222"
                            Margin="0,0,0,15"/>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="HP:"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource LightText}"/>
-
-                    <TextBox Name="HpTxBx"
+                <StackPanel Margin="0,0,0,10">
+                    <StackPanel Orientation="Horizontal">
+                        <Label Content="HP:" FontWeight="Bold" Foreground="{StaticResource LightText}"/>
+                        <TextBox Name="HpTxBx"
                              Width="50"
                              Margin="5,0"
-                             Text="10"
                              Background="#2E2E2E"
                              Foreground="{StaticResource LightText}"
                              BorderBrush="{StaticResource RedAccent}"
-                             Padding="5"/>
-
-                    <Label Name="MaxHpLbl"
-                           Content="/10"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource LightText}"/>
+                             Padding="5"
+                             TextChanged="HpTxBx_TextChanged"/>
+                        <Label Content="/" FontWeight="Bold" Foreground="{StaticResource LightText}"/>
+                        <Label Name="MaxHpLbl" FontWeight="Bold" Foreground="{StaticResource LightText}"/>
+                    </StackPanel>
+                    <ProgressBar x:Name="HpBar"
+                         Height="15"
+                         Minimum="0"
+                         Maximum="100"
+                         Value="100"
+                         Foreground="#228B22"
+                         Background="#2E2E2E"
+                         BorderBrush="{StaticResource RedAccent}"
+                         Margin="0,5,0,0"/>
                 </StackPanel>
 
                 <Separator Margin="0,20" Background="#555"/>
@@ -134,20 +139,13 @@
                            Foreground="#B22222"
                            Margin="10,0,0,0"/>
                 </StackPanel>
-                <StackPanel>
-                    <Button Background="#B22222" BorderBrush="#B22222" Content="Get Class Features" Width="150" Margin="0,20,0,0" Click="GetClassFeaturesBtn_Click"/> 
-                </StackPanel>
-                <StackPanel>
-                    <TextBlock Name="ClassTbx" Width="150" Height="100" Margin="0, 20, 0, 0"></TextBlock>
-                    <Button x:Name="SpellEditor" Content="Button" Click="SpellEditor_Click"/>
-                </StackPanel>
 
             </StackPanel>
         </Border>
 
         <!-- ================= ABILITIES CARD ================= -->
         <Border Grid.Row="1"
-                Grid.Column="2"
+                Grid.Column="1"
                 Background="{StaticResource DarkPanel}"
                 CornerRadius="10"
                 Padding="15"

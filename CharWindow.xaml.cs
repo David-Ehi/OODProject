@@ -31,12 +31,21 @@ namespace OODProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
+
+            if (character.IsSpellCaster == false)
+            {
+                SpellColumn.Width = new GridLength(0); //If the character is not a spellcaster, we set the width of the spell column to 0 so that it is not visible
+            }
             //Loads the characters information into the labels and textboxes
             CharNameLabel.Content = character.Name;
-            MaxHpLbl.Content = character.HP;
+            MaxHpLbl.Content = character.HP.ToString();
             HpTxBx.Text = character.HP.ToString();
             AcLbl.Content = character.AC;
             ClassTbx.Text = character.Class;
+
+            HpBar.Maximum = character.HP;
+            HpBar.Value = character.HP;
+
             LoadAbilityScores();
         }
 
@@ -107,6 +116,25 @@ namespace OODProject
             SpellAdder window = new SpellAdder(character);
             window.Owner = this;
             window.Show();
+        }
+
+        private void HpTxBx_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (int.TryParse(HpTxBx.Text, out int currentHp))
+            {
+                if (currentHp < 0)
+                {
+                    currentHp = 0;
+
+                }
+                if (currentHp > character.HP)
+                {
+                    currentHp = character.HP;
+
+                }
+                HpBar.Value = currentHp;
+
+            }
         }
     }
 }
