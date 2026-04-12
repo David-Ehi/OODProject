@@ -79,8 +79,7 @@
                          Background="#2E2E2E"
                          Foreground="{StaticResource LightText}"
                          BorderBrush="{StaticResource RedAccent}"
-                         BorderThickness="1"
-                         MouseDoubleClick="AvailableSpellsLbx_MouseDoubleClick"/>
+                         BorderThickness="1"/>
             </Grid>
         </Border>
 
@@ -131,8 +130,8 @@
                          Background="#2E2E2E"
                          Foreground="{StaticResource LightText}"
                          BorderBrush="{StaticResource RedAccent}"
-                         BorderThickness="1"
-                         MouseDoubleClick="AddedSpellsLbx_MouseDoubleClick"/>
+                         BorderThickness="1"/>
+                
             </Grid>
         </Border>
 

@@ -41,7 +41,17 @@ namespace OODProject
         public override string ToString() => $"{name} (Level {level})";
     }
 
-
+    public class SpellDetail
+    {
+        public string index { get; set; }
+        public string name { get; set; }
+        public List<string> desc { get; set; }
+        public string range { get; set; }
+        public List<string> components { get; set; }
+        public string duration { get; set; }
+        public string casting_time { get; set; }
+        public int level { get; set; }
+    }
 
 
 
