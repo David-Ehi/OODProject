@@ -101,5 +101,12 @@ namespace OODProject
             FeatureWindow.Owner = this;
             FeatureWindow.Show();
         }
+
+        private void SpellEditor_Click(object sender, RoutedEventArgs e)
+        {
+            SpellAdder window = new SpellAdder(character);
+            window.Owner = this;
+            window.Show();
+        }
     }
 }

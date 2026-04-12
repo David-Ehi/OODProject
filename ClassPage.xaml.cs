@@ -16,6 +16,8 @@ namespace OODProject
     /// </summary>
     public partial class ClassPage : Page
     {
+
+        private static readonly HttpClient client = new HttpClient(); // we use a static http client to make the api calls, this way we can reuse the same client for multiple calls and avoid the overhead of creating a new client for each call
         private string selectedClass;
         public ClassPage(string Class)
         {
@@ -159,7 +161,6 @@ namespace OODProject
         {
             if (_cachedLevels != null) return;
 
-            var client = new HttpClient();
 
             string body = await client.GetStringAsync(
                 $"https://www.dnd5eapi.co/api/2014/classes/{selectedClass}/levels");
@@ -169,6 +170,8 @@ namespace OODProject
         }
         #endregion
 
+
+            
         public int DetermineProficiencyBonus(int level)
         {
             if (level >= 1 && level <= 4)
@@ -212,6 +215,7 @@ namespace OODProject
                 int level = LvlCbx.SelectedIndex + 1;
                 string charactername = CharacterNametbx.Text;
                 string playername = playernametbx.Text;
+                var levelData = _cachedLevels.FirstOrDefault(l => l.level == level); // we get the level data for the selected level from the cached levels, this will be used to determine the spellcasting abilities of the character if they are a spellcaster
 
                 if (playername == "") // we validate the input, if the player name is empty we show a message box and return, we do this for all required fields
                 {
@@ -265,6 +269,25 @@ namespace OODProject
 
                 
                 character.IsSpellCaster =IsSpellcasterMethod(selectedClass); // we determine if the character is a spellcaster based on the selected class, this will be used later to determine if we need to show spell slots and spells for the character
+
+                if (levelData?.spellcasting != null)
+                {
+                    character.IsSpellCaster = true;
+                    character.CantripsKnown = levelData.spellcasting.cantrips_known;
+                    character.SpellSlotsLevel1 = levelData.spellcasting.spell_slots_level_1;
+                    character.SpellSlotsLevel2 = levelData.spellcasting.spell_slots_level_2;
+                    character.SpellSlotsLevel3 = levelData.spellcasting.spell_slots_level_3;
+                    character.SpellSlotsLevel4 = levelData.spellcasting.spell_slots_level_4;
+                    character.SpellSlotsLevel5 = levelData.spellcasting.spell_slots_level_5;
+                    character.SpellSlotsLevel6 = levelData.spellcasting.spell_slots_level_6;
+                    character.SpellSlotsLevel7 = levelData.spellcasting.spell_slots_level_7;
+                    character.SpellSlotsLevel8 = levelData.spellcasting.spell_slots_level_8;
+                    character.SpellSlotsLevel9 = levelData.spellcasting.spell_slots_level_9;
+                }
+                else
+                {
+                    character.IsSpellCaster = false;
+                }
 
                 character.Player = player;
                 player.Characters.Add(character);
@@ -582,6 +605,7 @@ namespace OODProject
                     return false;
             }
         }
+
     }
 
 }

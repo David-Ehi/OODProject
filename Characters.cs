@@ -28,7 +28,10 @@ namespace OODProject
 
         public string Skills { get; set; }
 
+        
         public bool IsSpellCaster { get; set; }
+
+        public int CantripsKnown { get; set; }
         public int SpellSlotsLevel1 { get; set; }
         public int SpellSlotsLevel2 { get; set; }
         public int SpellSlotsLevel3 { get; set; }
@@ -74,7 +77,10 @@ namespace OODProject
         {
             Characters = new List<Characters>();
         }
+
     }
+
+
 
     public class Player
     {

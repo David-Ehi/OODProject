@@ -27,6 +27,8 @@ namespace OODProject
 
         public List<Feature> features { get; set; }
 
+        public Spellcasting spellcasting { get; set; }
+
         public string index { get; set; }
 
         public ClassRef @class { get; set; }
@@ -40,4 +42,19 @@ namespace OODProject
         public string name { get; set; }
         public string url { get; set; }
     }
+
+    public class Spellcasting
+    {
+        public int cantrips_known { get; set; }
+        public int spell_slots_level_1 { get; set; }
+        public int spell_slots_level_2 { get; set; }
+        public int spell_slots_level_3 { get; set; }
+        public int spell_slots_level_4 { get; set; }
+        public int spell_slots_level_5 { get; set; }
+        public int spell_slots_level_6 { get; set; }
+        public int spell_slots_level_7 { get; set; }
+        public int spell_slots_level_8 { get; set; }
+        public int spell_slots_level_9 { get; set; }
+    }
+
 }

@@ -139,6 +139,7 @@
                 </StackPanel>
                 <StackPanel>
                     <TextBlock Name="ClassTbx" Width="150" Height="100" Margin="0, 20, 0, 0"></TextBlock>
+                    <Button x:Name="SpellEditor" Content="Button" Click="SpellEditor_Click"/>
                 </StackPanel>
 
             </StackPanel>

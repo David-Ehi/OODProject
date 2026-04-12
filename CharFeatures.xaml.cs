@@ -36,23 +36,7 @@ namespace OODProject
 
 
 
-        public async Task<List<Feature>> GetFeaturesForLevel(string className, int level) //gets all features for a given class and level, used to populate the listbox with the features of the selected class and level
-        {
-            var client = new HttpClient();
 
-            string body = await client.GetStringAsync(
-                $"https://www.dnd5eapi.co/api/2014/classes/{className}/levels");
-
-            List<ClassLevel> levels =
-                JsonConvert.DeserializeObject<List<ClassLevel>>(body);
-
-            ClassLevel levelData = levels.FirstOrDefault(l => l.level == level);
-
-            if (levelData != null)
-                return levelData.features;
-
-            return new List<Feature>();
-        }
 
         private List<ClassLevel> _cachedLevels; //to make thing more efficient, we cache the levels for the selected class so we dont have to make multiple api calls when the user changes the level selection
         private async Task LoadClassLevels()

@@ -106,6 +106,9 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="SpellAdder.xaml.cs">
+      <DependentUpon>SpellAdder.xaml</DependentUpon>
+    </Compile>
     <Page Include="CharFeatures.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -151,6 +154,10 @@
       <DependentUpon>MainWindow.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Page Include="SpellAdder.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Migrations\202603151705130_InitialCreate.cs" />
@@ -164,6 +171,10 @@
     <Compile Include="Migrations\202604112207014_AddCheckSpellCaster.cs" />
     <Compile Include="Migrations\202604112207014_AddCheckSpellCaster.Designer.cs">
       <DependentUpon>202604112207014_AddCheckSpellCaster.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202604121248485_AddSpellcastingColumns.cs" />
+    <Compile Include="Migrations\202604121248485_AddSpellcastingColumns.Designer.cs">
+      <DependentUpon>202604121248485_AddSpellcastingColumns.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -187,6 +198,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202604112207014_AddCheckSpellCaster.resx">
       <DependentUpon>202604112207014_AddCheckSpellCaster.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604121248485_AddSpellcastingColumns.resx">
+      <DependentUpon>202604121248485_AddSpellcastingColumns.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
