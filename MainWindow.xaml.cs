@@ -34,7 +34,13 @@ namespace OODProject
 
         private void SelectBtn_Click(object sender, RoutedEventArgs e)
         {
+            if (CharLbx.SelectedItem == null)
+            {
+                MessageBox.Show("Please select a character to view.");
+                return;
+            }
             //Opens the character creation window when the select button is clicked
+
             OpenCharWindow();
         }
 

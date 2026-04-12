@@ -266,8 +266,9 @@ namespace OODProject
                 character.Intelligence = Int;
                 character.Charisma = Cha;
                 character.ProficencyBonus = Profbonus;
+                character.Skills = string.Join(",", GetSelectedSkills());
 
-                
+
                 character.IsSpellCaster =IsSpellcasterMethod(selectedClass); // we determine if the character is a spellcaster based on the selected class, this will be used later to determine if we need to show spell slots and spells for the character
 
                 if (levelData?.spellcasting != null)

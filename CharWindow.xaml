@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:OODProject"
         mc:Ignorable="d"
         Title="Character Sheet"
-        Height="550"
+        Height="650"
         Width="1100"
         Background="#2E2E2E"
         Loaded="Window_Loaded">
@@ -51,7 +51,7 @@
                 CornerRadius="8"
                 Padding="15"
                 Margin="0,0,0,20"
-                Background="#1E1E1E">
+                Background="#2E2E2E">
 
             <Grid>
                 <Grid.ColumnDefinitions>
@@ -128,16 +128,62 @@
 
                 <Separator Margin="0,20" Background="#555"/>
 
-                <StackPanel Orientation="Horizontal">
-                    <Label Content="Armor Class:"
-                           FontWeight="Bold"
-                           Foreground="{StaticResource LightText}"/>
+                <UniformGrid Rows="2" Columns="3" Margin="0,15,0,0">
 
-                    <Label Name="AcLbl"
-                           Content="15"
+                    <TextBlock Text="Armor Class"
+               Foreground="{StaticResource LightText}"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"/>
+                    <TextBlock Text="Initiative"
+               Foreground="{StaticResource LightText}"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"/>
+                    <TextBlock Text="Prof Bonus"
+               Foreground="{StaticResource LightText}"
+               HorizontalAlignment="Center"
+               FontWeight="Bold"/>
+
+                    <TextBlock x:Name="AcTxbl"
+               Foreground="#B22222"
+               HorizontalAlignment="Center"
+               FontSize="18"
+               FontWeight="Bold"/>
+                    <TextBlock x:Name="InitiativeTxbl"
+               Foreground="#B22222"
+               HorizontalAlignment="Center"
+               FontSize="18"
+               FontWeight="Bold"/>
+                    <TextBlock x:Name="ProfBonusTxbl"
+               Foreground="#B22222"
+               HorizontalAlignment="Center"
+               FontSize="18"
+               FontWeight="Bold"/>
+
+                </UniformGrid>
+                <StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                    <TextBlock Text="Attacks"
+                           FontSize="18"
                            FontWeight="Bold"
+                           FontFamily="Georgia"
                            Foreground="#B22222"
-                           Margin="10,0,0,0"/>
+                           Margin="0,20,0,10"/>
+                    <Button x:Name="AddAttackBtn"
+                            Height="30"
+                            Width="70"
+                            Margin="50,0"
+                            Background="#2E2E2E"
+                            BorderBrush="{StaticResource RedAccent}"
+                            Content="+"/>
+                </StackPanel>
+
+                    <ListBox Name="AttacksLbBx"
+                         Height="160"
+                         Background="#2E2E2E"
+                         Foreground="{StaticResource LightText}"
+                         BorderBrush="{StaticResource RedAccent}"
+                         BorderThickness="1"
+                         d:ItemsSource="{d:SampleData ItemCount=3}"/>
                 </StackPanel>
 
             </StackPanel>
@@ -162,6 +208,20 @@
                            Margin="0,0,0,10"/>
 
                 <ListBox Name="AbilitiesLbBx"
+                         Height="165"
+                         Background="#2E2E2E"
+                         Foreground="{StaticResource LightText}"
+                         BorderBrush="{StaticResource RedAccent}"
+                         BorderThickness="1"
+                         d:ItemsSource="{d:SampleData ItemCount=5}"/>
+                <TextBlock Text="Skills"
+                           FontSize="18"
+                           FontWeight="Bold"
+                           FontFamily="Georgia"
+                           Foreground="#B22222"
+                           Margin="0,10,0,10"/>
+
+                <ListBox Name="SkillsLbBx"
                          Height="200"
                          Background="#2E2E2E"
                          Foreground="{StaticResource LightText}"

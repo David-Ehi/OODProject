@@ -31,7 +31,6 @@ namespace OODProject
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-
             if (character.IsSpellCaster == false)
             {
                 SpellColumn.Width = new GridLength(0); //If the character is not a spellcaster, we set the width of the spell column to 0 so that it is not visible
@@ -40,13 +39,19 @@ namespace OODProject
             CharNameLabel.Content = character.Name;
             MaxHpLbl.Content = character.HP.ToString();
             HpTxBx.Text = character.HP.ToString();
-            AcLbl.Content = character.AC;
-            ClassTbx.Text = character.Class;
+
+            AcTxbl.Text = character.AC.ToString();
+            ProfBonusTxbl.Text = "+" + character.ProficencyBonus.ToString();
+
+            // initiative is just the DEX modifier
+            int initiativeMod = (character.Dexterity - 10) / 2;
+            InitiativeTxbl.Text = initiativeMod >= 0 ? $"+{initiativeMod}" : initiativeMod.ToString();
 
             HpBar.Maximum = character.HP;
             HpBar.Value = character.HP;
 
             LoadAbilityScores();
+            SkillsLbBx.ItemsSource = CalculateSkills();
         }
 
         private void LoadAbilityScores()
@@ -136,5 +141,81 @@ namespace OODProject
 
             }
         }
+        public int GetModifier(int abilityScore)
+        {
+            return (abilityScore - 10) / 2;
+        }
+
+        public List<string> CalculateSkills() //god this took ages to figure out, this method calculates the skill modifiers for the character based on their ability scores and proficiencies, it returns a list of strings that can be displayed in the UI
+        {
+            int prof = character.ProficencyBonus;
+
+            List<string> proficientSkills;
+            if (character.Skills != null)
+            {
+                proficientSkills = character.Skills.Split(',').ToList();
+            }
+            else
+            {
+                proficientSkills = new List<string>();
+            }
+
+            string Format(string name, int mod)
+            {
+                bool isProficient = proficientSkills.Contains(name);
+                int total = mod;
+                if (isProficient)
+                {
+                    total += prof;
+                }
+                string sign = total >= 0 ? "+" : "";
+                
+                string marker;
+                if (isProficient)
+                {
+                    marker = "●"; //stole the icons off the internet, the filled circle means proficient and the empty circle means not proficient
+
+                }
+                else
+                {
+                    marker = "○";
+                }
+                return $"{marker} {name}: {sign}{total}";
+            }
+
+            int STR = GetModifier(character.Strength);
+            int DEX = GetModifier(character.Dexterity);
+            int INT = GetModifier(character.Intelligence);
+            int WIS = GetModifier(character.Wisdom);
+            int CHA = GetModifier(character.Charisma);
+
+            return new List<string>
+            {
+                Format("Athletics", STR),
+
+                Format("Acrobatics", DEX),
+                Format("Sleight of Hand", DEX),
+                Format("Stealth", DEX),
+
+                Format("Arcana", INT),
+                Format("History", INT),
+                Format("Investigation", INT),
+                Format("Nature", INT),
+                Format("Religion", INT),
+
+                Format("Animal Handling", WIS),
+                Format("Insight", WIS),
+                Format("Medicine", WIS),
+                Format("Perception", WIS),
+                Format("Survival", WIS),
+
+                Format("Deception", CHA),
+                Format("Intimidation", CHA),
+                Format("Performance", CHA),
+                Format("Persuasion", CHA),
+            };
+        }
+
+
     }
 }
