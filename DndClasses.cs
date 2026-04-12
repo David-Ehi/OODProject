@@ -38,7 +38,7 @@ namespace OODProject
         public int level { get; set; }
         public string url { get; set; }
 
-        public override string ToString() => name;
+        public override string ToString() => $"{name} (Level {level})";
     }
 
 

@@ -53,7 +53,7 @@ namespace OODProject
 
             foreach (var spell in spells.results)
             {
-                AvailableSpellsLbx.Items.Add(spell + " (Level " + spell.level + ")"); //We add each spell to the listbox so the user can select which spells they want to add to their character
+                AvailableSpellsLbx.Items.Add(spell); //We add each spell to the listbox so the user can select which spells they want to add to their character
             }
 
 
@@ -96,21 +96,36 @@ namespace OODProject
             
             foreach (var spell in spells.results)
             {
-                AvailableSpellsLbx.Items.Add(spell + " (Level " + spell.level + ")"); //We add each spell to the listbox so the user can select which spells they want to add to their character
+                AvailableSpellsLbx.Items.Add(spell); //We add each spell to the listbox so the user can select which spells they want to add to their character
             }
         }
 
         private void AddSpellBtn_Click(object sender, RoutedEventArgs e)
         {
-            var spell = AvailableSpellsLbx.SelectedItem;
-            
+            SpellResult selectedSpell = AvailableSpellsLbx.SelectedItem as SpellResult; //We get the selected spell from the available spells listbox and add it to the added spells listbox so the user can see which spells they have added to their character
+            if (selectedSpell != null && !AddedSpellsLbx.Items.Contains(selectedSpell))
+            {
+                AddedSpellsLbx.Items.Add(selectedSpell);
+            }
+            else
+            {
+                MessageBox.Show("Spell already added.");
+            }
         }
 
 
 
         private void RemoveSpellBtn_Click(object sender, RoutedEventArgs e)
         {
-
+            SpellResult selectedSpell = AddedSpellsLbx.SelectedItem as SpellResult; //We get the selected spell from the added spells listbox and remove it from the listbox so the user can see which spells they have removed from their character
+            if (selectedSpell != null)
+            {
+                AddedSpellsLbx.Items.Remove(selectedSpell);
+            }
+            else
+            {
+                MessageBox.Show("No spell selected to remove.");
+            }
         }
 
         private void AddedSpellsLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
