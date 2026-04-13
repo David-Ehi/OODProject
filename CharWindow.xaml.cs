@@ -60,6 +60,7 @@ namespace OODProject
 
             LoadAbilityScores();
             SkillsLbBx.ItemsSource = CalculateSkills();
+            LoadSpellSlots();
         }
 
         private void LoadAbilityScores()
@@ -248,6 +249,33 @@ namespace OODProject
                               .FirstOrDefault(c => c.CharacterId == character.CharacterId);
             }
             character.Spells.ToList().ForEach(s => SpellsLbx.Items.Add(s.Name + $" (Level {s.Level})")); //Loads the characters spells into the listbox
+        }
+
+        public void LoadSpellSlots()
+        {
+            Slot1Txbl.Text = character.SpellSlotsLevel1.ToString();
+            Slot2Txbl.Text = character.SpellSlotsLevel2.ToString();
+            Slot3Txbl.Text = character.SpellSlotsLevel3.ToString();
+            Slot4Txbl.Text = character.SpellSlotsLevel4.ToString();
+            Slot5Txbl.Text = character.SpellSlotsLevel5.ToString();
+            Slot6Txbl.Text = character.SpellSlotsLevel6.ToString();
+            Slot7Txbl.Text = character.SpellSlotsLevel7.ToString();
+            Slot8Txbl.Text = character.SpellSlotsLevel8.ToString();
+            Slot9Txbl.Text = character.SpellSlotsLevel9.ToString();
+        }
+
+        private void SpellsLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+            Spell selectedspell = character.Spells.FirstOrDefault(s => s.Name + $" (Level {s.Level})" == SpellsLbx.SelectedItem.ToString());
+            PopupSpellDetailTxt.Text = selectedspell.Description;
+            SpellDescPopup.IsOpen = true;
+            PopupSpellNameTxt.Text = SpellsLbx.SelectedItem.ToString();
+        }
+
+        private void Window_MouseDown(object sender, MouseButtonEventArgs e)
+        {
+            SpellDescPopup.IsOpen = false;
         }
     }
 }
