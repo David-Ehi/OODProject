@@ -277,5 +277,22 @@ namespace OODProject
         {
             SpellDescPopup.IsOpen = false;
         }
+
+        private void SkillsLbBx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            RollSkillCheck();
+        }
+
+        public void RollSkillCheck()
+        {
+            string selectedSkill = SkillsLbBx.SelectedItem.ToString();
+            int skillModifier = int.Parse(GetNumbers(selectedSkill));
+            MessageBox.Show($"You rolled a {rand.Next(1, 21) + skillModifier} on {selectedSkill}");
+        }
+
+        private static string GetNumbers(string input)
+        {
+            return new string(input.Where(c => char.IsDigit(c)).ToArray());
+        }
     }
 }
