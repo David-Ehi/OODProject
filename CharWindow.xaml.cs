@@ -34,9 +34,16 @@ namespace OODProject
             if (character.IsSpellCaster == false)
             {
                 SpellColumn.Width = new GridLength(0); //If the character is not a spellcaster, we set the width of the spell column to 0 so that it is not visible
+                SpellNameColumn.Width = new GridLength(0);
             }
+
+            if (character.IsSpellCaster == true)
+            {
+                LoadSpellLbx();
+            }
+
             //Loads the characters information into the labels and textboxes
-            CharNameLabel.Content = character.Name;
+            CharNameLabel.Text = $"{character.Name} ({character.Class} {character.Level})";
             MaxHpLbl.Content = character.HP.ToString();
             HpTxBx.Text = character.HP.ToString();
 
@@ -49,6 +56,7 @@ namespace OODProject
 
             HpBar.Maximum = character.HP;
             HpBar.Value = character.HP;
+
 
             LoadAbilityScores();
             SkillsLbBx.ItemsSource = CalculateSkills();
@@ -216,6 +224,30 @@ namespace OODProject
             };
         }
 
+        private void AddSpellBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SpellAdder window = new SpellAdder(character);
+            window.Owner = this;
+            window.Show();
+        }
 
+        private void RefreshSpellBtn_Click(object sender, RoutedEventArgs e)
+        {
+            SpellsLbx.Items.Clear();
+
+            LoadSpellLbx();
+
+        }
+        public void LoadSpellLbx()
+        {
+            using (var db = new PlayerData())
+            {
+                character = db.Characters
+                              .Include("Spells")
+                              .Include("Player")
+                              .FirstOrDefault(c => c.CharacterId == character.CharacterId);
+            }
+            character.Spells.ToList().ForEach(s => SpellsLbx.Items.Add(s.Name + $" (Level {s.Level})")); //Loads the characters spells into the listbox
+        }
     }
 }

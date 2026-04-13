@@ -178,6 +178,7 @@ namespace OODProject
                 }
                 db.SaveChanges();
                 MessageBox.Show("Spells saved to character!");
+                SpellAdder.GetWindow(this).Close();
             }
 
 
@@ -198,6 +199,7 @@ namespace OODProject
 
                 db.SaveChanges();
             }
+
         }
     }
 }
