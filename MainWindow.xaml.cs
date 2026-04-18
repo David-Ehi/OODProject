@@ -129,5 +129,32 @@ namespace OODProject
                 LoadCharacters();
             }
         }
+
+        private void EditDescBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Characters selectedChar = CharLbx.SelectedItem as Characters;
+            if (selectedChar == null)
+            {
+                MessageBox.Show("Please select a character first.");
+                return;
+            }
+
+            string newDesc = Microsoft.VisualBasic.Interaction.InputBox( //found this method online, it opens a simple input dialog box
+                "Enter a new description:",
+                "Edit Description",
+                selectedChar.Description);
+
+            if (string.IsNullOrEmpty(newDesc)) return;
+
+            using (var db = new PlayerData())
+            {
+                var charToUpdate = db.Characters.Find(selectedChar.CharacterId);
+                charToUpdate.Description = newDesc;
+                db.SaveChanges();
+            }
+
+            LoadCharacters();
+            CharTbx.Text = newDesc;
+        }
     }
 }
