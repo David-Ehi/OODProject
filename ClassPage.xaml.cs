@@ -221,6 +221,11 @@ namespace OODProject
                     MessageBox.Show($"Please enter a health value or roll for one.");
                     return;
                 }
+                if (RaceCbx.SelectedItem == null)
+                {
+                    MessageBox.Show("Please select a race.");
+                    return;
+                }
 
                 int Str = int.Parse(StrTbx.Text);
                 int Con = int.Parse(ConTbx.Text);
@@ -239,6 +244,7 @@ namespace OODProject
                 character.Name = charactername;
                 character.Level = level;
                 character.Class = selectedClass;
+                character.Race = ((ComboBoxItem)RaceCbx.SelectedItem).Content.ToString();
                 character.HP = int.Parse(HpTbx.Text);
                 character.Strength = Str;
                 character.Constitution = Con;

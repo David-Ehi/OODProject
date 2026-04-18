@@ -105,6 +105,27 @@
                         <ComboBoxItem Content="20"/>
                     </ComboBox>
 
+                    <TextBlock Text="Race"
+           Foreground="#B22222"
+           FontWeight="Bold"/>
+                    <ComboBox x:Name="RaceCbx"
+          Width="100"
+          Background="#2E2E2E"
+          HorizontalAlignment="left"
+          Margin="0,5,0,15"
+          >
+                        <ComboBoxItem Content="Dragonborn"/>
+                        <ComboBoxItem Content="Dwarf"/>
+                        <ComboBoxItem Content="Elf"/>
+                        <ComboBoxItem Content="Gnome"/>
+                        <ComboBoxItem Content="Half-Elf"/>
+                        <ComboBoxItem Content="Half-Orc"/>
+                        <ComboBoxItem Content="Halfling"/>
+                        <ComboBoxItem Content="Human"/>
+                        <ComboBoxItem Content="Tiefling"/>
+                    </ComboBox>
+
+
                     <TextBlock Text="Class Features"
                                Foreground="#B22222"
                                FontWeight="Bold"/>
