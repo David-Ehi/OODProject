@@ -1,6 +1,8 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -57,10 +59,12 @@ namespace OODProject
             HpBar.Maximum = character.HP;
             HpBar.Value = character.HP;
 
-
+            character.Notes = character.Notes ?? ""; // Ensure Notes is not null to avoid issues when displaying or saving notes
+            NotesTbx.Text = character.Notes;
             LoadAbilityScores();
             SkillsLbBx.ItemsSource = CalculateSkills();
             LoadSpellSlots();
+            LoadClassFeatures();
         }
 
         private void LoadAbilityScores()
@@ -111,19 +115,6 @@ namespace OODProject
             MessageBox.Show($"You rolled a {roll}");
         }
 
-        private void GetClassFeaturesBtn_Click(object sender, RoutedEventArgs e)
-        {
-            OpenCharFeatureWindow();
-        }
-
-        public void OpenCharFeatureWindow()
-        {
-            //opend the character window and passes the selected character to it
-            Characters MainChar = character as Characters;
-            CharFeatures FeatureWindow = new CharFeatures(MainChar);
-            FeatureWindow.Owner = this;
-            FeatureWindow.Show();
-        }
 
         private void SpellEditor_Click(object sender, RoutedEventArgs e)
         {
@@ -178,7 +169,7 @@ namespace OODProject
                     total += prof;
                 }
                 string sign = total >= 0 ? "+" : "";
-                
+
                 string marker;
                 if (isProficient)
                 {
@@ -293,6 +284,80 @@ namespace OODProject
         private static string GetNumbers(string input)
         {
             return new string(input.Where(c => char.IsDigit(c)).ToArray());
+        }
+
+        private async void ClassFeatureLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            if (ClassFeatureLbx.SelectedItem == null) return;
+
+            PopupNameTxt.Text = (ClassFeatureLbx.SelectedItem as Feature).name;
+
+            PopupDetailTxt.Text = $"Feature Index: {(ClassFeatureLbx.SelectedItem as Feature).index}\n" +
+                $"URL: {(ClassFeatureLbx.SelectedItem as Feature).url}";
+            await GetFeatureDesc((ClassFeatureLbx.SelectedItem as Feature).index); // we get the feature description using the index of the selected feature, this way we can display the description in the popup
+
+            FeatureDescPopup.IsOpen = true;
+        }
+
+        public async Task GetFeatureDesc(string index)
+        {
+            var client = new HttpClient();
+
+            string body = await client.GetStringAsync(
+                $"https://www.dnd5eapi.co/api/2014/features/{index}");
+
+            Features featureDesc = JsonConvert.DeserializeObject<Features>(body);
+
+            PopupDetailTxt.Text = string.Join("\n", featureDesc.desc); //the description is a list of strings, we join them together with newlines to display them in the textbox
+        }
+
+
+        public async void LoadClassFeatures()
+        {
+            await LoadClassLevels(); // Ensure levels are loaded and cached
+
+            int selectedLevel = character.Level;
+
+            var totalFeatures = _cachedLevels //we use the cached levels to get the features for all levels up to the selected level, this way we dont have to make multiple api calls when the user changes the level selection
+                .Where(l => l.level <= selectedLevel)
+                .SelectMany(l => l.features)
+                .ToList();
+
+            ClassFeatureLbx.ItemsSource = totalFeatures;
+        }
+        private static readonly HttpClient client = new HttpClient(); // we use a static http client to make the api calls, this way we can reuse the same client for multiple calls and avoid the overhead of creating a new client for each call
+
+        private List<ClassLevel> _cachedLevels; //to make thing more efficient, we cache the levels for the selected class so we dont have to make multiple api calls when the user changes the level selection
+        private async Task LoadClassLevels()
+        {
+            if (_cachedLevels != null) return;
+
+
+            string body = await client.GetStringAsync(
+                $"https://www.dnd5eapi.co/api/2014/classes/{character.Class.ToLower()}/levels");
+
+            _cachedLevels =
+                JsonConvert.DeserializeObject<List<ClassLevel>>(body);
+        }
+
+        private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
+        {
+            string NotesText = NotesTbx.Text;
+
+                using (var db = new PlayerData())
+                {
+                    var charToUpdate = db.Characters.FirstOrDefault(c => c.CharacterId == character.CharacterId);
+                    if (charToUpdate != null)
+                    {
+                        charToUpdate.Notes = NotesText;
+                        db.SaveChanges();
+                        MessageBox.Show(this, "Notes saved successfully!");
+                    }
+                    else
+                    {
+                        MessageBox.Show(this, "Character not found. Notes could not be saved." );
+                    }
+                }
         }
     }
 }

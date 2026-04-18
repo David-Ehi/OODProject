@@ -28,6 +28,8 @@ namespace OODProject
 
         public string Skills { get; set; }
 
+        public string Notes { get; set; }
+
         
         public bool IsSpellCaster { get; set; }
 
@@ -45,10 +47,15 @@ namespace OODProject
         
         public virtual ICollection<Spell> Spells { get; set; }
 
+        public virtual ICollection<Attack> Attacks { get; set; }
+
         public Characters()
         {
+            Attacks = new List<Attack>();
             Spells = new List<Spell>();
         }
+
+
 
         public virtual Player Player { get; set; }
 
@@ -80,6 +87,19 @@ namespace OODProject
 
     }
 
+    public class Attack
+    {
+        [Key]
+        public int AttackId { get; set; }
+        public string Name { get; set; }
+        public int NumDice { get; set; }
+        public int DiceType { get; set; }
+        public int BonusDamage { get; set; }
+        public int ToHitBonus { get; set; }
+        public int CharacterId { get; set; }
+        public virtual Characters Character { get; set; }
+    }
+
 
 
     public class Player
@@ -104,5 +124,8 @@ namespace OODProject
         public DbSet<Player> Players { get; set; }
         public DbSet<Characters> Characters { get; set; }
         public DbSet<Spell> Spells { get; set; }
+        public DbSet<Attack> Attacks { get; set; }
     }
+
+
 }

@@ -1,0 +1,81 @@
+﻿<Window x:Class="OODProject.AddAttackWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:OODProject"
+        mc:Ignorable="d"
+        Background="#2E2E2E"
+        WindowStartupLocation="CenterScreen"
+        Title="AddAttackWindow" Height="500" Width="350">
+    <Window.Resources>
+        <SolidColorBrush x:Key="RedAccent" Color="#8B0000"/>
+        <SolidColorBrush x:Key="LightText" Color="#DDDDDD"/>
+    </Window.Resources>
+
+    <Border Margin="20"
+            Background="#3A3A3A"
+            CornerRadius="10"
+            BorderBrush="#8B0000"
+            BorderThickness="2"
+            Padding="20">
+        <StackPanel>
+
+            <TextBlock Text="Add Attack"
+                       FontSize="20"
+                       FontWeight="Bold"
+                       FontFamily="Georgia"
+                       Foreground="#B22222"
+                       Margin="0,0,0,20"/>
+
+            <TextBlock Text="Attack Name" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
+            <TextBox x:Name="AttackNameTbx"
+                     Background="#2E2E2E"
+                     Foreground="{StaticResource LightText}"
+                     BorderBrush="#8B0000"
+                     Margin="0,5,0,15"/>
+
+            <TextBlock Text="Number of Dice" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
+            <ComboBox x:Name="NumDiceCbx" Margin="0,5,0,15">
+                <ComboBoxItem Content="1"/>
+                <ComboBoxItem Content="2"/>
+                <ComboBoxItem Content="3"/>
+                <ComboBoxItem Content="4"/>
+                <ComboBoxItem Content="5"/>
+            </ComboBox>
+
+            <TextBlock Text="Dice Type" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
+            <ComboBox x:Name="DiceTypeCbx" Margin="0,5,0,15">
+                <ComboBoxItem Content="d4"/>
+                <ComboBoxItem Content="d6"/>
+                <ComboBoxItem Content="d8"/>
+                <ComboBoxItem Content="d10"/>
+                <ComboBoxItem Content="d12"/>
+            </ComboBox>
+
+            <TextBlock Text="Bonus Damage" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
+            <TextBox x:Name="BonusDamageTbx"
+                     Background="#2E2E2E"
+                     Foreground="{StaticResource LightText}"
+                     BorderBrush="#8B0000"
+                     Margin="0,5,0,15"/>
+
+            <TextBlock Text="To Hit Bonus" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
+            <TextBox x:Name="ToHitBonusTbx"
+                     Background="#2E2E2E"
+                     Foreground="{StaticResource LightText}"
+                     BorderBrush="#8B0000"
+                     Margin="0,5,0,20"/>
+
+            <Button x:Name="SaveAttackBtn"
+                    Content="Save Attack"
+                    Height="40"
+                    Background="#8B0000"
+                    Foreground="White"
+                    FontWeight="Bold"
+                    BorderThickness="0"
+                    Click="SaveAttackBtn_Click"/>
+
+        </StackPanel>
+    </Border>
+</Window>

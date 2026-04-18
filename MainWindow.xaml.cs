@@ -97,7 +97,6 @@ namespace OODProject
         {
             CreateCharWindow createWindow = new CreateCharWindow();
             createWindow.Show();
-
         }
 
         private void RefreshBtn_Click(object sender, RoutedEventArgs e)

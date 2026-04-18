@@ -6,8 +6,10 @@
         xmlns:local="clr-namespace:OODProject"
         mc:Ignorable="d"
         Title="Create Character"
-        Height="650"
-        Width="1300"
+        Height="680"
+        Width="1100"
+        WindowStartupLocation="CenterScreen"
+        
         Background="#2E2E2E"
         Loaded="Window_Loaded">
 

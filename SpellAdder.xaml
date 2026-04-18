@@ -6,6 +6,8 @@
         xmlns:local="clr-namespace:OODProject"
         mc:Ignorable="d"
         Title="SpellAdder" Height="400" Width="450" Background="#2E2E2E" Loaded="Window_Loaded"
+        WindowStartupLocation="CenterScreen"
+        
 >
     <Window.Resources>
         <SolidColorBrush x:Key="RedAccent" Color="#8B0000"/>
