@@ -98,6 +98,11 @@ namespace OODProject
         public int ToHitBonus { get; set; }
         public int CharacterId { get; set; }
         public virtual Characters Character { get; set; }
+
+        public override string ToString()
+        {
+            return $"{Name} | {NumDice}d{DiceType}+{BonusDamage} | To Hit: +{ToHitBonus}";
+        }
     }
 
 

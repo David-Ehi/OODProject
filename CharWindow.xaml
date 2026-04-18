@@ -181,16 +181,27 @@
                             Margin="50,0"
                             Background="#2E2E2E"
                             BorderBrush="{StaticResource RedAccent}"
-                            Content="+"/>
+                            Content="+" Click="AddAttackBtn_Click"/>
+
                 </StackPanel>
 
                     <ListBox Name="AttacksLbBx"
-                         Height="160"
+                         Height="130"
                          Background="#2E2E2E"
                          Foreground="{StaticResource LightText}"
                          BorderBrush="{StaticResource RedAccent}"
                          BorderThickness="1"
                          d:ItemsSource="{d:SampleData ItemCount=3}"/>
+
+                    <Button x:Name="DeleteAttackBtn"
+                          Content="🗑"
+                          FontSize="20"
+                          Margin="0,20"
+                          Foreground="#B22222"
+                          Background="#2E2E2E"
+                          BorderBrush="{StaticResource RedAccent}" Click="DeleteAttackBtn_Click"></Button>
+
+
                 </StackPanel>
 
             </StackPanel>

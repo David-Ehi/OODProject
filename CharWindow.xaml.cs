@@ -65,6 +65,7 @@ namespace OODProject
             SkillsLbBx.ItemsSource = CalculateSkills();
             LoadSpellSlots();
             LoadClassFeatures();
+            LoadAttacks();
         }
 
         private void LoadAbilityScores()
@@ -76,43 +77,6 @@ namespace OODProject
             AbilitiesLbBx.Items.Add("WIS: " + character.Wisdom);
             AbilitiesLbBx.Items.Add("INT: " + character.Intelligence);
             AbilitiesLbBx.Items.Add("CHA: " + character.Charisma);
-        }
-
-        private void D20Btn_Click(object sender, RoutedEventArgs e)
-        {
-            //Simulates rolling a d20 and shows the result in a message box
-            int roll = rand.Next(1, 21);
-            MessageBox.Show($"You rolled a {roll}");
-        }
-
-        private void D12Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int roll = rand.Next(1, 13);
-            MessageBox.Show($"You rolled a {roll}");
-        }
-
-        private void D10Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int roll = rand.Next(1, 11);
-            MessageBox.Show($"You rolled a {roll}");
-        }
-
-        private void D8Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int roll = rand.Next(1, 9);
-            MessageBox.Show($"You rolled a {roll}");
-        }
-
-        private void D6Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int roll = rand.Next(1, 7);
-            MessageBox.Show($"You rolled a {roll}");
-        }
-
-        private void D4Btn_Click(object sender, RoutedEventArgs e)
-        {
-            int roll = rand.Next(1, 4);
-            MessageBox.Show($"You rolled a {roll}");
         }
 
 
@@ -340,6 +304,19 @@ namespace OODProject
                 JsonConvert.DeserializeObject<List<ClassLevel>>(body);
         }
 
+        public void LoadAttacks()
+        {
+            AttacksLbBx.Items.Clear();
+            using (var db = new PlayerData())
+            {
+                var attacks = db.Attacks.Where(a => a.CharacterId == character.CharacterId).ToList();
+                foreach (var attack in attacks)
+                {
+                    AttacksLbBx.Items.Add(attack);
+                }
+            }
+        }
+
         private void SaveNotesBtn_Click(object sender, RoutedEventArgs e)
         {
             string NotesText = NotesTbx.Text;
@@ -358,6 +335,32 @@ namespace OODProject
                         MessageBox.Show(this, "Character not found. Notes could not be saved." );
                     }
                 }
+        }
+
+        private void AddAttackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            AddAttackWindow addAttackWindow = new AddAttackWindow(character);
+            addAttackWindow.Owner = this;
+            addAttackWindow.Closed += (s, args) => LoadAttacks(); // Had to find this online so i dont need to add a refresh button for the attacks listbox, this way when the add attack window is closed, the attacks listbox is automatically refreshed to show the new attack
+            addAttackWindow.Show();
+
+        }
+
+        private void DeleteAttackBtn_Click(object sender, RoutedEventArgs e)
+        {
+            Attack selectedAttack = AttacksLbBx.SelectedItem as Attack;
+            if (selectedAttack == null)
+            {
+                MessageBox.Show("Please select an attack to delete.");
+                return;
+            }
+            using (var db = new PlayerData())
+            {
+                Attack attackToDelete = db.Attacks.Find(selectedAttack.AttackId);
+                db.Attacks.Remove(attackToDelete);
+                db.SaveChanges();
+            }
+            LoadAttacks(); // Refresh the attacks listbox to show the updated list of attacks after deletion
         }
     }
 }

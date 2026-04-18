@@ -60,7 +60,7 @@
                      BorderBrush="#8B0000"
                      Margin="0,5,0,15"/>
 
-            <TextBlock Text="To Hit Bonus" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
+            <TextBlock Text="To Hit" Foreground="{StaticResource LightText}" FontWeight="Bold"/>
             <TextBox x:Name="ToHitBonusTbx"
                      Background="#2E2E2E"
                      Foreground="{StaticResource LightText}"
