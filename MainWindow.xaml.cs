@@ -1,20 +1,10 @@
-﻿using System;
+﻿using iText.Forms;
+using iText.Kernel.Pdf;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using static System.Net.Mime.MediaTypeNames;
-using System.Text.Json;
-using System.IO;
 
 namespace OODProject
 {
@@ -52,7 +42,7 @@ namespace OODProject
 
             LoadCharacters();
 
-
+            
         }
 
         private void LoadCharacters()
@@ -155,6 +145,11 @@ namespace OODProject
 
             LoadCharacters();
             CharTbx.Text = newDesc;
+        }
+
+        private void ExportPdfBtn_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }
