@@ -244,6 +244,7 @@ namespace OODProject
                 character.Name = charactername;
                 character.Level = level;
                 character.Class = selectedClass;
+                character.Subclass = SubclassCbBx.SelectedItem != null ? (SubclassCbBx.SelectedItem as Subclass).name : null; // we set the subclass of the character to the selected subclass if there is one, otherwise we set it to null
                 character.Race = ((ComboBoxItem)RaceCbx.SelectedItem).Content.ToString();
                 character.HP = int.Parse(HpTbx.Text);
                 character.Strength = Str;

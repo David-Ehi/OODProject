@@ -196,6 +196,10 @@
     <Compile Include="Migrations\202604181717207_AddRaces.Designer.cs">
       <DependentUpon>202604181717207_AddRaces.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202604192211333_AddSubclass.cs" />
+    <Compile Include="Migrations\202604192211333_AddSubclass.Designer.cs">
+      <DependentUpon>202604192211333_AddSubclass.cs</DependentUpon>
+    </Compile>
     <Compile Include="SpellAdder.xaml.cs">
       <DependentUpon>SpellAdder.xaml</DependentUpon>
     </Compile>
@@ -297,6 +301,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202604181717207_AddRaces.resx">
       <DependentUpon>202604181717207_AddRaces.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202604192211333_AddSubclass.resx">
+      <DependentUpon>202604192211333_AddSubclass.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

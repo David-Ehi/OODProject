@@ -15,6 +15,8 @@ namespace OODProject
 
         public string Race { get; set; }
         public string Class { get; set; }
+        public string Subclass { get; set; }
+        public string Background { get; set; }
         public int Level { get; set; }
         public int ProficencyBonus { get; set; }
 

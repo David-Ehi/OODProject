@@ -416,9 +416,15 @@ Width="250">
                    FontFamily="Georgia"
                    Foreground="#B22222"
                    Margin="0,0,0,10"/>
+                <TextBlock x:Name="subclasstxbk" Text="SubclassTxt"
+   FontSize="12"
+   FontWeight="Bold"
+   FontFamily="Georgia"
+   Foreground="#B22222"
+   Margin="0,0,0,10"/>
 
                 <ListBox x:Name="ClassFeatureLbx"
-                     Height="200"
+                     Height="180"
                      Background="#2E2E2E"
                      Foreground="{StaticResource LightText}"
                      BorderBrush="{StaticResource RedAccent}"

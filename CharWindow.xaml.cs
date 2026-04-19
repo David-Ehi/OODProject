@@ -3,16 +3,10 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace OODProject
 {
@@ -45,7 +39,7 @@ namespace OODProject
             }
 
             //Loads the characters information into the labels and textboxes
-            CharNameLabel.Text = $"{character.Name} ({character.Class} {character.Level})";
+            CharNameLabel.Text = $"{character.Name} ({character.Race})";
             MaxHpLbl.Content = character.HP.ToString();
             HpTxBx.Text = character.HP.ToString();
 
@@ -58,6 +52,8 @@ namespace OODProject
 
             HpBar.Maximum = character.HP;
             HpBar.Value = character.HP;
+
+            subclasstxbk.Text = $"({character.Class} {character.Level})({character.Subclass})";
 
             character.Notes = character.Notes ?? ""; // Ensure Notes is not null to avoid issues when displaying or saving notes
             NotesTbx.Text = character.Notes;
