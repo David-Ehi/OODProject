@@ -147,9 +147,5 @@ namespace OODProject
             CharTbx.Text = newDesc;
         }
 
-        private void ExportPdfBtn_Click(object sender, RoutedEventArgs e)
-        {
-
-        }
     }
 }
