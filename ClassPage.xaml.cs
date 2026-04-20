@@ -226,6 +226,11 @@ namespace OODProject
                     MessageBox.Show("Please select a race.");
                     return;
                 }
+                if (string.IsNullOrEmpty(AcTbx.Text))
+                {
+                    MessageBox.Show("Please enter an AC.");
+                    return;
+                }
 
                 int Str = int.Parse(StrTbx.Text);
                 int Con = int.Parse(ConTbx.Text);
@@ -249,6 +254,7 @@ namespace OODProject
                 character.HP = int.Parse(HpTbx.Text);
                 character.Strength = Str;
                 character.Constitution = Con;
+                character.AC = int.Parse(AcTbx.Text);
                 character.Dexterity = Dex;
                 character.Wisdom = Wis;
                 character.Intelligence = Int;

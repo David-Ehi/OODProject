@@ -257,6 +257,8 @@
           HorizontalAlignment="left"
           Margin="0,5,0,15"
           >
+
+
                             <ComboBoxItem Content="Dragonborn"/>
                             <ComboBoxItem Content="Dwarf"/>
                             <ComboBoxItem Content="Elf"/>
@@ -267,6 +269,16 @@
                             <ComboBoxItem Content="Human"/>
                             <ComboBoxItem Content="Tiefling"/>
                         </ComboBox>
+                        <TextBlock Text="Armor Class (AC)"
+           Foreground="#B22222"
+           FontWeight="Bold"/>
+                        <TextBox x:Name="AcTbx"
+         Width="80"
+         Margin="0,5,0,15"
+         Background="#2E2E2E"
+         Foreground="#DDDDDD"
+         BorderBrush="#8B0000"
+         HorizontalAlignment="Left"/>
                         <TextBlock x:Name="SkillsHeaderTxt" 
                    Text="Skills (Choose Two)"
                    Foreground="#B22222"
