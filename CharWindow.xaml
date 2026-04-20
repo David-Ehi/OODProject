@@ -34,8 +34,8 @@
     <Grid Margin="20">
 
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="29*"/>
+            <RowDefinition Height="179*"/>
         </Grid.RowDefinitions>
 
         <Grid.ColumnDefinitions>
@@ -168,14 +168,14 @@
 
                 </UniformGrid>
                 <StackPanel>
-                <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
-                    <TextBlock Text="Attacks"
+                    <StackPanel Orientation="Horizontal" Margin="0,20,0,0">
+                        <TextBlock Text="Attacks"
                            FontSize="18"
                            FontWeight="Bold"
                            FontFamily="Georgia"
                            Foreground="#B22222"
                            Margin="0,20,0,10"/>
-                    <Button x:Name="AddAttackBtn"
+                        <Button x:Name="AddAttackBtn"
                             Height="30"
                             Width="70"
                             Margin="50,0"
@@ -183,7 +183,7 @@
                             BorderBrush="{StaticResource RedAccent}"
                             Content="+" Click="AddAttackBtn_Click"/>
 
-                </StackPanel>
+                    </StackPanel>
 
                     <ListBox Name="AttacksLbBx"
                          Height="130"
@@ -227,9 +227,9 @@
                            VerticalAlignment="Center"                            
                            Margin="0,5,0 0"
                            />
-                    
+
                 </StackPanel>
-                
+
                 <ListBox Name="AbilitiesLbBx"
                          Height="195"
                          Background="#2E2E2E"
@@ -268,7 +268,7 @@
             <StackPanel>
                 <StackPanel Orientation="Vertical" Margin="0,10,0,0">
                     <StackPanel Orientation="Horizontal" Margin="0,0,0,10">
-                    <TextBlock 
+                        <TextBlock 
                    Text="Spells Known"
                    FontSize="18"
                    FontWeight="Bold"
@@ -300,8 +300,8 @@
                  BorderBrush="{StaticResource RedAccent}"
                  BorderThickness="1"
                  d:ItemsSource="{d:SampleData ItemCount=6}" MouseDoubleClick="SpellsLbx_MouseDoubleClick"/>
-                    
-                    
+
+
                     <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
                         <TextBlock Text="Add Spell"
                            FontSize="18"
@@ -310,7 +310,7 @@
                            Foreground="#B22222"
                            VerticalAlignment="Center"/>
 
-                    <Button x:Name="AddSpellBtn"
+                        <Button x:Name="AddSpellBtn"
                         Height="30"
                         Width="70"
                         Margin="40,0,0,0"
@@ -360,7 +360,7 @@
 
                         </UniformGrid>
                     </Border>
-                    
+
                     <!-- =====Extra Info Card====== -->
 
 
@@ -396,7 +396,7 @@ Width="250">
 
 
             </StackPanel>
-            
+
         </Border>
 
         <!-- ================= EXTRA NOTES CARD ================= -->
@@ -460,7 +460,7 @@ Width="250">
                             Foreground="White"
                             BorderBrush="#2E2E2E" Click="SaveNotesBtn_Click"
                             >
-                       
+
                     </Button>
                 </StackPanel>
             </StackPanel>

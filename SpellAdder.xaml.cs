@@ -133,7 +133,6 @@ namespace OODProject
             if (selectedSpell != null)
             {
                 RemoveSelectedSpell();
-                AddedSpellsLbx.Items.Remove(selectedSpell);
             }
             else
             {
@@ -148,12 +147,13 @@ namespace OODProject
 
             using (var db = new PlayerData())
             {
-                var characterToUpdate = db.Characters.Find(character.CharacterId);
+                var characterToUpdate = db.Characters
+                    .Include("Spells")
+                    .FirstOrDefault(c => c.CharacterId == character.CharacterId);
                 foreach (SpellResult spell in AddedSpellsLbx.Items)
                 {
 
                     var request = new HttpRequestMessage(HttpMethod.Get, $"https://www.dnd5eapi.co/api/2014/spells/{spell.index}");
-                    request.Headers.Add("Accept", "application/json");
                     var response = await client.SendAsync(request);
                     response.EnsureSuccessStatusCode();
                     var body = await response.Content.ReadAsStringAsync();

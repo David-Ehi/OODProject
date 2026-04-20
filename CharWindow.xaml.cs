@@ -76,12 +76,7 @@ namespace OODProject
         }
 
 
-        private void SpellEditor_Click(object sender, RoutedEventArgs e)
-        {
-            SpellAdder window = new SpellAdder(character);
-            window.Owner = this;
-            window.Show();
-        }
+
 
         private void HpTxBx_TextChanged(object sender, TextChangedEventArgs e)
         {
@@ -217,6 +212,7 @@ namespace OODProject
 
         private void SpellsLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
+            if (SpellsLbx.SelectedItem == null) return;
 
             Spell selectedspell = character.Spells.FirstOrDefault(s => s.Name + $" (Level {s.Level})" == SpellsLbx.SelectedItem.ToString());
             PopupSpellDetailTxt.Text = selectedspell.Description;
@@ -236,14 +232,16 @@ namespace OODProject
 
         public void RollSkillCheck()
         {
-            string selectedSkill = SkillsLbBx.SelectedItem.ToString();
-            int skillModifier = int.Parse(GetNumbers(selectedSkill));
-            MessageBox.Show($"You rolled a {rand.Next(1, 21) + skillModifier} on {selectedSkill}");
-        }
+            if (SkillsLbBx.SelectedItem == null) return;
 
-        private static string GetNumbers(string input)
-        {
-            return new string(input.Where(c => char.IsDigit(c)).ToArray());
+            string selectedSkill = SkillsLbBx.SelectedItem.ToString();
+
+            // realised that the skills would not work with negative values so redid the code to work like this
+            string modifierPart = selectedSkill.Split(':')[1].Trim();
+            int skillModifier = int.Parse(modifierPart);
+
+            int roll = rand.Next(1, 21);
+            MessageBox.Show(this, $"You rolled a {roll + skillModifier} ({roll} + {modifierPart}) on {selectedSkill}");
         }
 
         private async void ClassFeatureLbx_MouseDoubleClick(object sender, MouseButtonEventArgs e)

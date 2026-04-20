@@ -53,7 +53,6 @@ namespace OODProject
             {
                 string selectedClass = ClassLbx.SelectedItem.ToString().ToLower(); //not sure if this is right, i couldnt get it work otherwise
 
-                if (ClassLbx.SelectedItem == null) return;
 
                 ClassFrame.Navigate(new ClassPage(selectedClass));
             }
